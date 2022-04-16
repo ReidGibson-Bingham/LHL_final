@@ -7,10 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all 
+User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
 
-users = User.create([{name: 'Marvin the Martian', email: "marvinmartian@looneytunes.com", password: "password"}, {name: 'Porky Pig', email: "porkypig@looneytunes.com", password: "password"}, {name: 'Tweety Bird', email: "tweetybird@looneytunes.com", password: "password"}, {name: 'Yosemite Sam', email: "yosemitesam@looneytunes.com", password: "password"}])
+user0 = User.create(id: 0, name: 'No Player', email: "none", password: "none")
+user1 = User.create({name: 'Marvin the Martian', email: "marvinmartian@looneytunes.com", password: "password"})
+user2 = User.create({name: 'Porky Pig', email: "porkypig@looneytunes.com", password: "password"})
+user3 = User.create({name: 'Tweety Bird', email: "tweetybird@looneytunes.com", password: "password"})
+user4 = User.create({name: 'Yosemite Sam', email: "yosemitesam@looneytunes.com", password: "password"})
+
+
+# User.create([{name: 'Marvin the Martian', email: "marvinmartian@looneytunes.com", password: "password"}, {name: 'Porky Pig', email: "porkypig@looneytunes.com", password: "password"}, {name: 'Tweety Bird', email: "tweetybird@looneytunes.com", password: "password"}, {name: 'Yosemite Sam', email: "yosemitesam@looneytunes.com", password: "password"}])
+
+puts "created #{User.count} users"
 # v to remove from database v to pass in clean state
 Text.destroy_all 
+Text.connection.execute('ALTER SEQUENCE texts_id_seq RESTART WITH 1')
 
 Text.create!([
   {difficulty: 'child', content: 'f d j k s l a f d j k s l a f d j k s l a f d j k s l a f d j k s l a f d j k s l a '},
@@ -58,3 +69,13 @@ Text.create!([
 ])
 
 puts "created #{Text.count} texts"
+
+
+Game.destroy_all 
+Game.connection.execute('ALTER SEQUENCE games_id_seq RESTART WITH 1')
+#game_datetime: Time.now, 
+# user1 = User.find_or_create_by! name: 'Marvin the Martian'
+# user1.games.create!([{player1_id: user1.id, player2_id: 6, text_id: 5}])
+Game.create([{player1_id: user1.id, player2_id: 0, game_datetime: Time.now, text_id: 1},  {player1_id: user1.id, player2_id: user2.id, game_datetime: Time.now, text_id: 1},  {player1_id: user3.id, player2_id: user1.id, game_datetime: Time.now, text_id: 2}])
+
+puts "created #{Game.count} games"
