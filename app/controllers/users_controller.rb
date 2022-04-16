@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   def index
     @users = User.all
@@ -11,10 +12,19 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    puts "this is user new"
+    puts @user
   end
 
+  
+
   def create
-    @user = User.new(user_params) 
+    puts 'this is from users controller'
+    puts user_params
+    
+    user = User.new(user_params)
+    user.save
+
   end
   
 
@@ -23,3 +33,4 @@ class UsersController < ApplicationController
   end
 
 end
+

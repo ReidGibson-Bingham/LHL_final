@@ -6,9 +6,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.App{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.form-container {
+  align-self: center;
+  max-width: 100px;
+  max-height: 100px;
+}
+.sign-up-container {
+  position: relative
+  
+}
+
+.TextShow {
+  position: relative;
+  padding: 200px;
+}
+
+#text-button {
+  padding: 10px;
 }

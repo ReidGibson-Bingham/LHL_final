@@ -32,7 +32,7 @@ export default function Form() {
   // Handling the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
+    const userData = {
       name: name,
       email: email,
       password: password,
@@ -40,9 +40,14 @@ export default function Form() {
     if (name === "" || email === "" || password === "") {
       setError(true);
     } else {
-      axios.post(`/users`, { user }).then((res) => {
-        console.log("post user", res, "name", name);
-      });
+      axios
+        .post(`/users`, userData)
+        .then((res) => {
+          console.log("post user", res, "name", name);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
       setError(false);
     }
   };
@@ -76,18 +81,16 @@ export default function Form() {
   };
 
   return (
-    <div className="form">
-      <div>
-        <h1>User Registration</h1>
-      </div>
+    <div className="form-container">
+      <h1>User Registration</h1>
 
       {/* Calling to the methods */}
-      <div className="messages">
+      <span className="messages">
         {errorMessage()}
         {successMessage()}
-      </div>
+      </span>
 
-      <form>
+      <form className="sign-up-container">
         {/* Labels and inputs for form data */}
         <label className="label">Name</label>
         <input
