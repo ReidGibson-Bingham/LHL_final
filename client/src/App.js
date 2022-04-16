@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import { createConsumer } from '@rails/actioncable'; 
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +34,13 @@ class App extends Component {
       </div>
     );
   }
+}
+
+window.testWebsocket = () => {
+
+  const cable = createConsumer('ws://localhost:3000/cable')
+  console.log("hello", cable)
+
 }
 
 export default App;
