@@ -19,7 +19,7 @@ code {
 .App{
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 
 }
 .form-container {

@@ -90,7 +90,7 @@ export default function Form() {
         {successMessage()}
       </span>
 
-      <form className="sign-up-container">
+      <form className="sign-up-container"> 
         {/* Labels and inputs for form data */}
         <label className="label">Name</label>
         <input
