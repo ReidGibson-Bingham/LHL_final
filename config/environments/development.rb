@@ -44,6 +44,10 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # specify the development and production socket URIs in the appropriate environment files, and pass it through to the consumer via the action_cable_meta_tag
+  config.action_cable.url = "ws://localhost:3000/cable"
+  
+  config.action_cable.allowed_request_origins = [ 'http://localhost:3001' ] 
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

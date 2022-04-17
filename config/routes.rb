@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
+  resources :chat, except: [:destroy]
+
   resources :users, except: [:destroy]
    
   resources :texts, except: [:destroy]

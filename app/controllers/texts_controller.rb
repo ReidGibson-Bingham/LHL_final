@@ -10,4 +10,13 @@ class TextsController < ApplicationController
     render json: @text
   end
 
+  def create
+
+    @text = Text.new(text_params)
+    ActionCable.server.broadcast 'texts',
+      content: @text.content,
+    head :ok
+
+  end
+
 end
