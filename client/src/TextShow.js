@@ -49,15 +49,18 @@ export default function TextShow(props) {
   const fetchData = (e) => {
     e.preventDefault();
     console.log("fetch data ??");
+    const min = 1;
+    const max = 4;
+    const randNum = Math.floor( Math.random() * (max - min));
     axios
       .get("/texts/") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // handle success
         console.log("response data is", response.data); // The entire response from the Rails API
-
-        console.log("response.data.content", response.data[1].content); // Just the message
+        console.log("randomnumber", randNum);
+        console.log("response.data.content", response.data[randNum].content); // Just the message
         setText({
-          content: response.data[1].content,
+          content: response.data[randNum].content,
         });
       });
   };

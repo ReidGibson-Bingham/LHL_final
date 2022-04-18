@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy]
    
   resources :texts, except: [:destroy]
+  
+  resources :sessions, except: [:destroy]
 
   resources :games, except: [:destroy, :edit]
   # post '/users' => 'users#create'
