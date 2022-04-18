@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import axios from "axios";
 
 export default function Game() {
 
   const [data, setData] = useState('');
   
-  const getGameData = function() {
+  const getGameData = function(e) {
+    e.preventDefault()
     axios.get('http://localhost:3000/games')
       .then((response) => {
         console.log("response:", response.data)
@@ -16,32 +17,27 @@ export default function Game() {
         alert("Error retreiving data")
       })
   }
+  
+  const modifiedData = Object.entries({...data[0]});
 
-  console.log("##data:", data);
+  const dataItems = modifiedData.map( (item) => {
 
-  const displayGameData = function(data) {
-    
-    console.log("@@data:", data[0]);
+    return (
+      <div>
+        {item[0]}: {item[1]}
+      </div>
+    )
 
-    if (!data) {
-      return null;
-    } 
-    else {
-      return (
-        <div>{data[0].id}</div>
-      )
-    }
+  })
 
-  }
 
   return (
-    <>
-
+    <Fragment>
       <button className='start-button' onClick={getGameData}> Start Game </button>
-
-      <div>{displayGameData(data)}</div>
-
-    </>
+      <ul>
+        {dataItems}
+      </ul>
+    </Fragment>
   );
   
 }
