@@ -50,7 +50,7 @@ export default function TextShow(props) {
     e.preventDefault();
     console.log("fetch data ??");
     axios
-      .get("/texts/") // You can simply make your requests to "/api/whatever you want"
+      .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // handle success
         console.log("response data is", response.data); // The entire response from the Rails API
