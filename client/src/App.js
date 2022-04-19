@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Form from "./Form";
 import TextShow from "./TextShow";
-import Game from "./Game"
+import Stats from "./Stats"
 
 export default function App() {
 
@@ -10,7 +10,7 @@ export default function App() {
     <div className="App">
       <Form />
       <TextShow />
-      <Game />
+      <Stats />
     </div>
   );
 }

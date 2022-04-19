@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from "react";
 import axios from "axios";
 
-export default function Game() {
+export default function Stats() {
 
   const [data, setData] = useState('');
   
@@ -35,7 +35,7 @@ export default function Game() {
 
   return (
     <Fragment>
-      <button className='start-button' onClick={getGameData}> Start Game </button>
+      <button className='stats-button' onClick={getGameData}> show stats </button>
       <ul>
         {dataItems}
       </ul>
