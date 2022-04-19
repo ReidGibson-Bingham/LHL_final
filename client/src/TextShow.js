@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
@@ -11,10 +11,13 @@ export default function TextShow(props) {
   const [text, setText] = useState("loading text");
   //const [typing, setTyping] = useState("");
   //------------------------------------
+
   const [input, setInput] = useState("");
   const [layout, setLayout] = useState("default");
   const keyboard = useRef();
+  //console.log("keyboard options", keyboard);
 
+  //onChange is for virtual keyboard
   const onChange = (input) => {
     setInput(input);
     console.log("Input changed", input);
@@ -25,6 +28,7 @@ export default function TextShow(props) {
     setLayout(newLayoutName);
   };
 
+  //onKeyPress is also for vertual keyboard
   const onKeyPress = (button) => {
     console.log("Button pressed", button);
 
@@ -34,10 +38,17 @@ export default function TextShow(props) {
     if (button === "{shift}" || button === "{lock}") handleShift();
   };
 
+  //this is for physical keyboard
   const onChangeInput = (event) => {
+    //console.log("onchangeinput", keyboard.current.physicalKeyboardHighlight);
     const input = event.target.value;
-    //console.log(input);
+
     setInput(input);
+    //set up options for virtual highlight of physical keyboard
+    keyboard.current.setOptions({
+      physicalKeyboardHighlight: true,
+      syncInstanceInputs: true,
+    });
     keyboard.current.setInput(input);
   };
 
