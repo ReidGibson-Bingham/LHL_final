@@ -4,9 +4,10 @@ import axios from "axios";
 import "../styles/App.scss";
 
 import TopNavbar from "../navigation/TopNavbar.js";
+import TextShow from "../TextShow";
 
 //import Form from "./Form";
-import TextShow from "../TextShow";
+//import TextShow from "../TextShow";
 
 export default function App() {
   return (
@@ -18,7 +19,9 @@ export default function App() {
           <div class="col-sm-4">Time and Errors Here</div>
         </div>
         <div className="App">Typing Text Here</div>
-        <div className="App">Keyboard Here</div>
+        <div className="App">
+          <TextShow />
+        </div>
       </section>
     </main>
   );

@@ -9,7 +9,7 @@ import "./styles.css";
 
 export default function TextShow(props) {
   const [text, setText] = useState("loading text");
-  const [typing, setTyping] = useState("");
+  //const [typing, setTyping] = useState("");
   //------------------------------------
   const [input, setInput] = useState("");
   const [layout, setLayout] = useState("default");
@@ -36,28 +36,35 @@ export default function TextShow(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
+    //console.log(input);
     setInput(input);
     keyboard.current.setInput(input);
   };
 
   //--------------------------------
 
-  const handleTyping = (e) => {
-    setTyping(e.target.value);
-  };
+  // const handleTyping = (e) => {
+  //   setTyping(e.target.value);
+  // };
 
   const fetchData = (e) => {
     e.preventDefault();
-    console.log("fetch data ??");
+    //console.log("fetch data ??");
+    const min = 1;
+    const max = 4;
+    const randNum = Math.floor(Math.random() * (max - min));
     axios
-      .get("/texts/") // You can simply make your requests to "/api/whatever you want"
+      .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // handle success
-        console.log("response data is", response.data); // The entire response from the Rails API
-
-        console.log("response.data.content", response.data[1].content); // Just the message
+        //console.log("response data is", response.data); // The entire response from the Rails API
+        //console.log("randomnumber", randNum);
+        console.log(
+          "response.data.content",
+          typeof response.data[randNum].content
+        ); // Just the message
         setText({
-          content: response.data[1].content,
+          content: response.data[randNum].content,
         });
       });
   };

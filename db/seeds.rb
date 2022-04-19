@@ -79,3 +79,10 @@ Game.connection.execute('ALTER SEQUENCE games_id_seq RESTART WITH 1')
 Game.create([{player1_id: user1.id, player2_id: 0, game_datetime: Time.now, text_id: 1},  {player1_id: user1.id, player2_id: user2.id, game_datetime: Time.now, text_id: 1},  {player1_id: user3.id, player2_id: user1.id, game_datetime: Time.now, text_id: 2}])
 
 puts "created #{Game.count} games"
+
+Session.destroy_all 
+Session.connection.execute('ALTER SEQUENCE sessions_id_seq RESTART WITH 1')
+
+Session.create([{user_id: '1', game_id: '1', error_count: '10', timer: '60'}, {user_id: '2', game_id: '2', error_count: '5', timer: '30'},{user_id: '3', game_id: '3', error_count: '0', timer: '50'},{user_id: '4', game_id: '3', error_count: '20', timer: '70'}])
+
+puts "created #{Session.count} sessions"

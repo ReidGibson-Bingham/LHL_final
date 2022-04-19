@@ -85,3 +85,11 @@ To make your app work properly with React Router (if you end up using it) on Her
 ## Contact
 
 Please contact me at `nima.boscarino@gmail.com` if you have any questions or requests, or post an issue to this repo.
+
+### commands for granting privileges to psql roles
+
+- GRANT ALL PRIVILEGES ON DATABASE lhl_final_development TO labber;
+
+- ALTER USER labber WITH SUPERUSER
+
+- We have to put the database.yml in the gitignore if we don't want to push it to the master. so we should all agree on what role we want to share or put the file in the git ignore
