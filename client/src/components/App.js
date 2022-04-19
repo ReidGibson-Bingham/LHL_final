@@ -14,9 +14,9 @@ export default function App() {
     <main className="layout">
       <TopNavbar />
       <section className="typing-text">
-        <div class="row">
-          <div class="col-sm-8">Mode and Difficulty Selection Here</div>
-          <div class="col-sm-4">Time and Errors Here</div>
+        <div className="row">
+          <div className="col-sm-8">Mode and Difficulty Selection Here</div>
+          <div className="col-sm-4">Time and Errors Here</div>
         </div>
         <div className="App">Typing Text Here</div>
         <div className="App">

@@ -1,4 +1,4 @@
-.keyboard-input {
+#keyboard-input {
   width: 100%;
   height: 100px;
   padding: 20px;
@@ -11,3 +11,12 @@
   
   max-width: 850px;
 }
+
+.has-background-success{
+  background-color: rgb(35, 233, 35);
+}
+
+.has-background-wrong{
+  background-color: yellow;
+}
+
