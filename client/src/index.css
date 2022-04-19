@@ -43,6 +43,10 @@ code {
   padding: 10px;
 }
 
+.stats-list {
+  align-self: center;
+}
+
 .text-button {
   padding: 10px;
 }

@@ -41,7 +41,7 @@ export default function Form() {
       setError(true);
     } else {
       axios
-        .post(`/users`, userData)
+        .post(`http://localhost:3000/users`, userData)
         .then((res) => {
           console.log("post user", res, "name", name);
         })

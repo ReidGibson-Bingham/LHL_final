@@ -3,6 +3,7 @@ import "./App.css";
 import Form from "./Form";
 import TextShow from "./TextShow";
 import Stats from "./Stats"
+import StartGame from "./StartGame";
 
 export default function App() {
 
@@ -10,6 +11,7 @@ export default function App() {
     <div className="App">
       <Form />
       <TextShow />
+      <StartGame />
       <Stats />
     </div>
   );
