@@ -3,24 +3,37 @@ import axios from "axios";
 
 export default function Stats() {
 
-  const [data, setData] = useState('');
+  const [gameData, setGameData] = useState('');
+  const [sessionData, setSessionData] = useState('');
   
   const getGameData = function(e) {
+
     e.preventDefault()
+
     axios.get('http://localhost:3000/games')
       .then((response) => {
-        console.log("response:", response.data)
-        setData(response.data )
-        console.log("data:", data)
+        console.log("games response.data:", response.data)
+        setGameData(response.data )
+        console.log("Game data:", gameData)
       })
       .catch(() => {
         alert("Error retreiving data")
       })
+
+    axios.get('http://localhost:3000/sessions')
+      .then((response) => {
+        console.log("sessions response.data:", response.data)
+        setSessionData(response.data)
+      })
+      .catch(() => {
+        alert("Error retreiving data")
+      })
+
   }
   
-  const modifiedData = Object.entries({...data[0]});
+  const modifiedGameData = Object.entries({...gameData[0]});
 
-  const dataItems = modifiedData.map( (item) => {
+  const gameDataItems = modifiedGameData.map( (item) => {
 
     return (
       <div key={item[0]}>
@@ -32,12 +45,26 @@ export default function Stats() {
 
   })
 
+  const modifiedSessionData = Object.entries({...sessionData[0]});
+
+  const sessionDataItems = modifiedSessionData.map( (item) => {
+
+    return (
+      <div key={item[0]}>
+        {item[0]}: {item[1]} 
+        <br></br>
+        <br></br>
+      </div>
+    )
+
+  })
 
   return (
     <Fragment>
       <button className='stats-button' onClick={getGameData}> show stats </button>
       <ul>
-        {dataItems}
+        {gameDataItems}
+        {sessionDataItems}
       </ul>
     </Fragment>
   );
