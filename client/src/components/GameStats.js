@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from "react";
 import axios from "axios";
 
-export default function Game() {
+export default function GameStats() {
 
   const [gameData, setGameData] = useState('');
   const [sessionData, setSessionData] = useState('');
