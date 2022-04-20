@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, {Fragment, useState} from "react";
-// import axios from "axios";
 
-export default function StartGame() {
+export default function DifficultySelection() {
 
   const [text, setText] = useState("loading text");
 

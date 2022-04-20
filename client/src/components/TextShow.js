@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
-import "./styles.css";
+import "../styles/styles.scss";
 
 export default function TextShow(props) {
   const [text, setText] = useState("loading text");
