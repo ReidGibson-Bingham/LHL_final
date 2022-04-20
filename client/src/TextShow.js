@@ -9,6 +9,9 @@ import "./styles.css";
 
 export default function TextShow(props) {
   const [text, setText] = useState("loading text".split(""));
+
+  const [errorCount, setErrorCount] = useState(0);
+  console.log("errorCount:", errorCount);
   //const [typing, setTyping] = useState("");
   //------------------------------------
   const [input, setInput] = useState("");
@@ -73,7 +76,6 @@ export default function TextShow(props) {
   };
 
   function check(letter, index) {
-    
     let textTyped = input[index];
     // console.log(
     //   "check function",
@@ -86,6 +88,7 @@ export default function TextShow(props) {
     if (letter === textTyped) {
       return "has-background-success";
     } else {
+      //setErrorCount(1);
       return "has-background-wrong";
     }
   }

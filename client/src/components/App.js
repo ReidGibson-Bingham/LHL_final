@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "../styles/App.scss";
-
+import useAppData from "../hooks/useAppData";
 import TopNavbar from "../navigation/TopNavbar.js";
 import TextShow from "../TextShow";
 
@@ -10,6 +10,8 @@ import TextShow from "../TextShow";
 //import TextShow from "../TextShow";
 
 export default function App() {
+  const { errorCount, textId, textDifficultyId, typingTime } = useAppData();
+
   return (
     <main className="layout">
       <TopNavbar />
@@ -20,7 +22,11 @@ export default function App() {
         </div>
         <div className="App">Typing Text Here</div>
         <div className="App">
-          <TextShow />
+          <TextShow
+            errorCount={errorCount}
+            textId={textId}
+            textDifficultyId={textDifficultyId}
+          />
         </div>
       </section>
     </main>
