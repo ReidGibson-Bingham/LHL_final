@@ -75,14 +75,7 @@ export default function TextShow(props) {
   function check(letter, index) {
     
     let textTyped = input[index];
-    // console.log(
-    //   "check function",
-    //   textTyped,
-    //   "type",
-    //   typeof textTyped,
-    //   "letter",
-    //   letter
-    // );
+    
     if (letter === textTyped) {
       return "has-background-success";
     } else {
