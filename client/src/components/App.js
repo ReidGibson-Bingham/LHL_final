@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
 import "../styles/App.scss";
 import useAppData from "../hooks/useAppData";
 import TopNavbar from "../navigation/TopNavbar.js";
@@ -52,9 +49,8 @@ export default function App() {
           <div className="col-sm-8">
             <GameMode />
           </div>
-          <div className="col-sm-4">
-            <GameScore />
-          </div>
+
+          <div className="col-sm-4">Time and Errors Here</div>
         </div>
         <div className="App">Typing Text Here</div>
         <div className="App">
@@ -67,6 +63,9 @@ export default function App() {
           />
         </div>
       </section>
+      <div className="game-button">
+        <GameStats />
+      </div>
     </main>
   );
 }
