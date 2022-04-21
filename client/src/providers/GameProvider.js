@@ -15,7 +15,8 @@ export default function GameProvider(props) {
   const [gameTotalTime, setGameTotalTime] = useState(0);
   const setErrCount = (errorCount) => setErrorCount(errorCount);
   const [gameData, setGameData] = useState({});
-  const [sessionData, setSessionData] = useState({});
+  const [sessionData, setSessionData] = useState([]);
+  const [sessionsData, setSessionsData] = useState([]);
 
 
 
@@ -37,8 +38,7 @@ export default function GameProvider(props) {
     fetchData(textDifficulty);
   }, []);
 
-
-  const saveData = function () {
+  const saveGameData = function () {
 
     const gameDATA = {
       is_single_player: null,
@@ -50,11 +50,7 @@ export default function GameProvider(props) {
       updated_at: null
     }
 
-    
-
     setGameData(gameDATA)
-
-    
 
     axios.post('http://localhost:3000/games', gameDATA)
       .then((response) => {
@@ -90,6 +86,38 @@ export default function GameProvider(props) {
 
   }
 
+  const getGamesData = function() {
+
+    axios.get('http://localhost:3000/sessions')
+      .then((response) => {
+        setSessionsData(response.data)
+        console.log("response.data:", response.data)
+        
+      })
+      .catch(() => {
+        alert("Error retreiving data")
+      })
+
+    // axios.get('http://localhost:3000/games')
+    //   .then((response) => {
+    //     console.log("games response.data:", response.data)
+    //     setGameData(response.data )
+    //     // console.log("Game data:", gameData)
+
+    //     return axios.get('http://localhost:3000/sessions')
+
+    //   })
+    //   .then((response) => {
+
+    //     console.log("sessions response.data:", response.data)
+    //     setSessionData(response.data)
+    //   })
+    //   .catch(() => {
+    //     alert("Error retreiving data")
+    //   })
+
+  }
+
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = {
     errorCount,
@@ -104,7 +132,13 @@ export default function GameProvider(props) {
     setTextDifficulty,
     gameTotalTime,
     setGameTotalTime,
-    saveData
+    gameData,
+    saveGameData, 
+    getGamesData,
+    setSessionData,
+    sessionData,
+    setSessionsData,
+    sessionsData
   };
 
   // We can now use this as a component to wrap anything
