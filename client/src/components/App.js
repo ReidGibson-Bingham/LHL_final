@@ -12,11 +12,11 @@ import GameMode from "./GameMode";
 
 import GameStats from "./GameStats";
 
+import GameScore from "./GameScore";
+
 import GameProvider from "../providers/GameProvider";
 
-
 export default function App() {
-  
   //const { errorCount, textId, textDifficultyId, typingTime } = useAppData();
   // const [gameStatus, setGameStatus] = useState("new"); // statuses => new, started, done
   // const [errorCount, setErrorCount] = useState(0);
@@ -49,28 +49,26 @@ export default function App() {
   // }, []);
 
   return (
-    <GameProvider>
-      <main className="layout">
+    <main className="layout">
+      <GameProvider>
         <TopNavbar />
         <section className="typing-text">
           <div className="row">
             <div className="col-sm-8">
               <GameMode />
             </div>
-
-            <div className="col-sm-4">Time and Errors Here</div>
+            <div className="col-sm-4">
+              <GameScore />
+            </div>
           </div>
-          <div className="App">Typing Text Here</div>
           <div className="App">
-            
-              <TypingText/> 
-            
+            <TypingText />
           </div>
         </section>
         <div className="game-button">
           <GameStats />
         </div>
-      </main>
-    </GameProvider>
+      </GameProvider>
+    </main>
   );
 }
