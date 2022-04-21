@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.permit(:user_id, :game_id, :error_count, :timer, :created_at, :updated_at)
+    params.require(:session).permit(:user_id, :game_id, :error_count, :timer, :created_at, :updated_at)
   end
 
 end

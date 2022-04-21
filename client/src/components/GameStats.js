@@ -5,49 +5,47 @@ import { gameContext } from "../providers/GameProvider";
 
 export default function GameStats() {
 
-  const {textDifficulty} = useContext(gameContext);
+  const {textDifficulty, saveData, gameData, setGameData, sessionData, setSessionData} = useContext(gameContext);
 
-  const [gameData, setGameData] = useState('');
-  const [sessionData, setSessionData] = useState('');
-
-  const saveGameData = function (e) {
+  // const saveGameData = function (e) {
     
-    e.preventDefault()
+  //   e.preventDefault()
 
-    setGameData({
-      is_single_player: null,
-      player1_id: 1,
-      player2_id: 0,
-      game_datetime: null,
-      text_id: textDifficulty,
-      created_at: null, 
-      updated_at: null
-    })
+  //   setGameData({
+  //     is_single_player: null,
+  //     player1_id: 1,
+  //     player2_id: 0,
+  //     game_datetime: null,
+  //     text_id: textDifficulty,
+  //     created_at: null, 
+  //     updated_at: null
+  //   })
 
-    setSessionData({
-      user_id: 1,
-      game_id: 1,
-      error_count: 100,
-      timer: 68,
-      created_at: null,
-      updated_at: null
-    })
+  //   setSessionData({
+  //     user_id: 1,
+  //     game_id: 1,
+  //     error_count: 100,
+  //     timer: 68,
+  //     created_at: null,
+  //     updated_at: null
+  //   })
 
-    axios.post('http://localhost:3000/games', gameData)
-      .then((response) => {
-        console.log("game data successfully saved, response: ", response)
+  //   axios.post('http://localhost:3000/games', gameData)
+  //     .then((response) => {
+  //       console.log("game data successfully saved, response: ", response)
 
-        return axios.post('http://localhost:3000/sessions', sessionData)
+  //       return axios.post('http://localhost:3000/sessions', sessionData)
 
-      })
-      .then((response) => {
-        console.log("session data successfully saved, response: ", response)
-      })
-      .catch((error) => {
-        alert("session data could not be saved, error: ", error)
-      })
+  //     })
+  //     .then((response) => {
+  //       console.log("session data successfully saved, response: ", response)
+  //     })
+  //     .catch((error) => {
+  //       alert("session data could not be saved, error: ", error)
+  //     })
 
-  }
+  // }
+  
   
   const getGameData = function(e) {
 
@@ -72,42 +70,41 @@ export default function GameStats() {
 
   }
 
-  const modifiedGameData = Object.entries({...gameData[gameData.length - 1]});
-  console.log("gameData:", gameData);
+  // const modifiedGameData = Object.entries({...gameData[gameData.length - 1]});
 
-  const gameDataItems = modifiedGameData.map( (item) => {
-    return (
-      <div key={item[0]}>
-        {item[0]}: {item[1]} 
-        <br></br>
-        <br></br>
-      </div>
-    )
+  // const gameDataItems = modifiedGameData.map( (item) => {
+  //   return (
+  //     <div key={item[0]}>
+  //       {item[0]}: {item[1]} 
+  //       <br></br>
+  //       <br></br>
+  //     </div>
+  //   )
 
-  })
+  // })
 
-  const modifiedSessionData = Object.entries({...sessionData[sessionData.length - 1]});
+  // const modifiedSessionData = Object.entries({...sessionData[sessionData.length - 1]});
 
-  const sessionDataItems = modifiedSessionData.map( (item) => {
+  // const sessionDataItems = modifiedSessionData.map( (item) => {
 
-    return (
-      <div key={item[0]}>
-        {item[0]}: {item[1]} 
-        <br></br>
-        <br></br>
-      </div>
-    )
+  //   return (
+  //     <div key={item[0]}>
+  //       {item[0]}: {item[1]} 
+  //       <br></br>
+  //       <br></br>
+  //     </div>
+  //   )
 
-  })
+  // })
   
 
   return (
     <Fragment>
-      <button className='stats-button' onClick={saveGameData}> Save Game </button>
+      <button className='stats-button' onClick={saveData}> Save Game </button>
       <button className='stats-button' onClick={getGameData}> get stats </button>
       <ul className="stats-list">
-        {gameDataItems}
-        {sessionDataItems}
+        {/* {gameDataItems}
+        {sessionDataItems} */}
       </ul>
     </Fragment>
   );

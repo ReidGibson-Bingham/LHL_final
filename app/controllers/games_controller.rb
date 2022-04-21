@@ -22,11 +22,11 @@ class GamesController < ApplicationController
     
     game = Game.new(game_params)
     game.save
-
+    render json: game
   end
 
   def game_params
-    params.permit(:is_single_player, :player1_id, :player2_id, :game_datetime, :text_id, :created_at, :updated_at)
+    params.require(:game).permit(:is_single_player, :player1_id, :player2_id, :game_datetime, :text_id, :created_at, :updated_at)
   end
 
 

@@ -23,8 +23,6 @@ export default function TypingText(props) {
     setTextDifficulty,
   } = useContext(gameContext);
 
-  console.log("@@error count:", errorCount);
-
   //const [text, setText] = useState("loading text".split(""));
   //const [typing, setTyping] = useState("");
   //------------------------------------
@@ -34,7 +32,6 @@ export default function TypingText(props) {
 
   const onChange = (input) => {
     setInput(input);
-    console.log("Input changed", input);
   };
 
   const handleShift = () => {
@@ -43,7 +40,6 @@ export default function TypingText(props) {
   };
 
   const onKeyPress = (button) => {
-    console.log("Button pressed", button);
 
     /**
      * If you want to handle the shift and caps lock buttons
@@ -53,13 +49,13 @@ export default function TypingText(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
-    console.log("input: ", input);
+    
     setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
       syncInstanceInputs: true,
     });
-    console.log("typing text: ", typingText);
+    
     // error handling //
     const index = input.length - 1;
     if (input.length === 1) {
@@ -68,20 +64,20 @@ export default function TypingText(props) {
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
       event.target.disabled = true;
-      console.log("Game Done!");
+    
     }
 
     keyboard.current.setInput(input);
     const letter = typingText[index];
 
     let textTyped = input[index];
-    console.log("texttyped: ", textTyped);
-    console.log("letter:", letter);
+    
+    
     if (letter === textTyped) {
-      console.log("matched!");
+    
     } else {
       setErrorCount(errorCount + 1);
-      console.log("It didn't match");
+      
     }
 
     // check();
@@ -95,18 +91,18 @@ export default function TypingText(props) {
 
   function check(letter, index) {
     const textTyped = input[index];
-    console.log("TT textTyped:", textTyped);
+    
     if (letter === textTyped) {
-      console.log("TT has-background-success ");
+    
       return "has-background-success";
     } else if (!textTyped) {
-      console.log("TT background-color ");
+    
       return "background-color";
     }
-    console.log("TT has-background-wrong ");
+    
     return "has-background-wrong";
 
-    console.log("index:", index);
+    
   }
 
   return (
