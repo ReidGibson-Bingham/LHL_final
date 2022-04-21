@@ -1,87 +1,27 @@
 import axios from "axios";
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useContext} from "react";
+
+import { gameContext } from "../providers/GameProvider";
 
 export default function GameMode() {
 
-  const [text, setText] = useState("loading text");
+  const {textDifficulty, setTextDifficulty, fetchData} = useContext(gameContext)
 
-  const fetchChild = function (difficulty) {
-    e.preventDefault()
-    const index = 0;
-
-    axios.get('http://localhost:3000/texts')
-      .then((response) => {
-        console.log("texts response.data:", response.data)
-        setText(response.data[index])
-        console.log("text difficulty:", text.difficulty)
-        console.log(Object.values({...text}));
-      })
-      .catch(() => {
-        alert("Error retreiving data")
-      })
-  }
-
-  const fetchEasy = function (e) {
-    e.preventDefault()
-    const index = 1;
-
-    axios.get('http://localhost:3000/texts')
-      .then((response) => {
-        console.log("texts response.data:", response.data)
-        setText(response.data[index])
-        console.log("text difficulty:", text.difficulty)
-      })
-      .catch(() => {
-        alert("Error retreiving data")
-      })
-  }
-
-
-  const fetchMedium = function (e) {
-    e.preventDefault()
-    const index = 2;
-
-    axios.get('http://localhost:3000/texts')
-      .then((response) => {
-        console.log("texts response.data:", response.data)
-        setText(response.data[index])
-        console.log("text difficulty:", text.difficulty)
-      })
-      .catch(() => {
-        alert("Error retreiving data")
-      })
-  }
-
-  const fetchHard = function (e) {
-    e.preventDefault()
-    const index = 3;
-
-    axios.get('http://localhost:3000/texts')
-      .then((response) => {
-        console.log("texts response.data:", response.data)
-        setText(response.data[index])
-        console.log("text difficulty:", text.difficulty)
-      })
-      .catch(() => {
-        alert("Error retreiving data")
-      })
-  }
 
   return (
     <Fragment>
       <div className="dropdown">
         <p className="difficulty-dropbtn">Difficulty</p>
         <div className="dropdown-content">
-        <button onClick={() => fetchData(“Child”)}>Child</button>
-          <button onClick={fetchEasy}>Easy</button>
-          <button onClick={fetchMedium}>Medium</button>
-          <button onClick={fetchHard}>Hard</button>
+        <button onClick={() => fetchData(0)}>Child</button>
+          <button onClick={() => fetchData(1)}>Easy</button>
+          <button onClick={() => fetchData(2)}>Medium</button>
+          <button onClick={() => fetchData(3)}>Hard</button>
         </div>
       </div>
-      <ul id="test-display-text">
-        {text.content}
-      </ul>
-      
+      {/* <ul id="test-display-text">
+        {textDifficulty.content}
+      </ul> */}
     </Fragment>
 
   );

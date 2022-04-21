@@ -7,10 +7,9 @@ export const gameContext = createContext();
 // Create a Component wrapper from Context.Provider
 export default function GameProvider(props) {
 
-  const [gameStatus, setGameStatus] = useState("new"); // statuses => new, started, done
-  const [errorCount, setErrorCount] = useState(0);
+  const [gameStatus, setGameStatus] = useState("new"); // cstatuses => new, started, done
 
-  
+  const [errorCount, setErrorCount] = useState(0);
   const [textId, setTextId] = useState(0);
   const [typingText, setTypingText] = useState("no text".split(""));
   const [textDifficulty, setTextDifficulty] = useState(0);
@@ -26,7 +25,8 @@ export default function GameProvider(props) {
       .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         console.log("response data is", response.data); // The 
-        setTypingText(response.data[0].content.trim().split(""));
+        setTypingText(response.data[textDifficulty].content.trim().split(""));
+        console.log("text difficulty:", textDifficulty);
         //return response.data[randNum].content.split("");
       });
     //console.log("text is:", text);
@@ -38,7 +38,7 @@ export default function GameProvider(props) {
   }, []);
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
-  const providerData = { errorCount, setErrorCount, gameStatus, setGameStatus, textId, setTextId, typingText, fetchData, textDifficulty, setTextDifficulty  };
+  const providerData = { errorCount, setErrorCount, gameStatus, setGameStatus, textId, setTextId, typingText, fetchData, textDifficulty, setTextDifficulty};
 
   // We can now use this as a component to wrap anything 
   // that needs our state

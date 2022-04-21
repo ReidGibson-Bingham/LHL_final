@@ -1,7 +1,11 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useContext} from "react";
 import axios from "axios";
 
+import { gameContext } from "../providers/GameProvider";
+
 export default function GameStats() {
+
+  const {textDifficulty} = useContext(gameContext);
 
   const [gameData, setGameData] = useState('');
   const [sessionData, setSessionData] = useState('');
@@ -15,7 +19,7 @@ export default function GameStats() {
       player1_id: 1,
       player2_id: 0,
       game_datetime: null,
-      text_id: 1,
+      text_id: textDifficulty,
       created_at: null, 
       updated_at: null
     })

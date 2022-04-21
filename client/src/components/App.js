@@ -49,26 +49,28 @@ export default function App() {
   // }, []);
 
   return (
-    <main className="layout">
-      <TopNavbar />
-      <section className="typing-text">
-        <div className="row">
-          <div className="col-sm-8">
-            <GameMode />
-          </div>
+    <GameProvider>
+      <main className="layout">
+        <TopNavbar />
+        <section className="typing-text">
+          <div className="row">
+            <div className="col-sm-8">
+              <GameMode />
+            </div>
 
-          <div className="col-sm-4">Time and Errors Here</div>
+            <div className="col-sm-4">Time and Errors Here</div>
+          </div>
+          <div className="App">Typing Text Here</div>
+          <div className="App">
+            
+              <TypingText/> 
+            
+          </div>
+        </section>
+        <div className="game-button">
+          <GameStats />
         </div>
-        <div className="App">Typing Text Here</div>
-        <div className="App">
-          <GameProvider>
-            <TypingText/> 
-          </GameProvider>
-        </div>
-      </section>
-      <div className="game-button">
-        <GameStats />
-      </div>
-    </main>
+      </main>
+    </GameProvider>
   );
 }
