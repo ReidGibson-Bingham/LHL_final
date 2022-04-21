@@ -57,12 +57,10 @@ export default function App() {
             <div className="col-sm-8">
               <GameMode />
             </div>
-
             <div className="col-sm-4">
               <GameScore />
             </div>
           </div>
-          <div className="App">Typing Text Here</div>
           <div className="App">
             <TypingText />
           </div>

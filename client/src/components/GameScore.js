@@ -49,16 +49,16 @@ export default function GameScore() {
 
   //<span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
   return (
-    <div className="stopwatch">
-      <div className="numbers">
+    <div className="stopwatch row">
+      <div className="numbers col-sm-2">
         <span className="game_score-min">
           {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
         </span>
-        <span className="game_score-sec">
+        <span className="game_score-sec ">
           {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
         </span>
       </div>
-      <div className="errorCountStat">
+      <div className="errorCountStat col-sm-4">
         <span>Error Count: {errorCount}</span>
       </div>
 

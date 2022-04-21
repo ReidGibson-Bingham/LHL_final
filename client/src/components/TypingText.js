@@ -64,8 +64,10 @@ export default function TypingText(props) {
     const index = input.length - 1;
     if (input.length === 1) {
       setGameStatus("started");
+      event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
+      event.target.disabled = true;
       console.log("Game Done!");
     }
 
@@ -113,6 +115,15 @@ export default function TypingText(props) {
   console.log("props.text:", props.text);
   return (
     <div className="TextShow">
+      <div className="GameStatus">
+        {gameStatus === "started"
+          ? "Game In Progress..."
+          : gameStatus === "done"
+          ? "Game Complete!"
+          : gameStatus === "new"
+          ? "Game Ready!"
+          : "Select game difficulty."}
+      </div>
       <div id="text-showed">
         {typingText.map((letter, i) => (
           <span key={i} className={check(letter, i)}>
