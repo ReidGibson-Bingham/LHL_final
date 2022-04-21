@@ -5,8 +5,6 @@ export default function GameStats() {
 
   const [gameData, setGameData] = useState('');
   const [sessionData, setSessionData] = useState('');
-  const [index, setIndex] = useState(0);
-
 
   const saveGameData = function (e) {
     
@@ -72,7 +70,6 @@ export default function GameStats() {
 
   const modifiedGameData = Object.entries({...gameData[gameData.length - 1]});
   console.log("gameData:", gameData);
-  console.log("index: ", index);
 
   const gameDataItems = modifiedGameData.map( (item) => {
     return (
