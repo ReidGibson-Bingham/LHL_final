@@ -5,7 +5,7 @@ export default function GameMode() {
 
   const [text, setText] = useState("loading text");
 
-  const fetchChild = function (e) {
+  const fetchChild = function (difficulty) {
     e.preventDefault()
     const index = 0;
 
@@ -72,7 +72,7 @@ export default function GameMode() {
       <div className="dropdown">
         <p className="difficulty-dropbtn">Difficulty</p>
         <div className="dropdown-content">
-          <button onClick={fetchChild}>Child</button>
+        <button onClick={() => fetchData(“Child”)}>Child</button>
           <button onClick={fetchEasy}>Easy</button>
           <button onClick={fetchMedium}>Medium</button>
           <button onClick={fetchHard}>Hard</button>
