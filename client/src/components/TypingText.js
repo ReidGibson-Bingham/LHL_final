@@ -62,9 +62,9 @@ export default function TypingText(props) {
     console.log("typing text: ", typingText);
     // error handling //
     const index = input.length - 1;
-    if (index > 0 && index < 2) {
+    if (input.length === 1) {
       setGameStatus("started");
-    } else if (index === typingText.length) {
+    } else if (index === typingText.length - 1) {
       setGameStatus("done");
       console.log("Game Done!");
     }
@@ -93,12 +93,15 @@ export default function TypingText(props) {
 
   function check(letter, index) {
     const textTyped = input[index];
+    console.log("TT textTyped:", textTyped);
     if (letter === textTyped) {
+      console.log("TT has-background-success ");
       return "has-background-success";
-    } else if (textTyped === null) {
+    } else if (!textTyped) {
+      console.log("TT background-color ");
       return "background-color";
     }
-
+    console.log("TT has-background-wrong ");
     return "has-background-wrong";
 
     console.log("index:", index);
