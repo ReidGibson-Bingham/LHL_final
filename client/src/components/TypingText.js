@@ -109,10 +109,6 @@ export default function TypingText(props) {
     console.log("index:", index);
   }
 
-  //   <button id="text-button" onClick={fetchData}>
-  //   Click for showing typing text
-  // </button>
-  console.log("props.text:", props.text);
   return (
     <div className="TextShow">
       <div className="GameStatus">
@@ -141,9 +137,6 @@ export default function TypingText(props) {
         placeholder={"Start typing to begin game"}
         onChange={onChangeInput}
       />
-
-      <div>Error count: {errorCount} </div>
-
       <Keyboard
         keyboardRef={(r) => (keyboard.current = r)}
         layoutName={layout}

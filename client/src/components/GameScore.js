@@ -19,6 +19,8 @@ export default function GameScore() {
     fetchData,
     textDifficulty,
     setTextDifficulty,
+    gameTotalTime,
+    setGameTotalTime,
   } = useContext(gameContext);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function GameScore() {
     }
     if (gameStatus === "done") {
       setRunning(false);
+      setGameTotalTime(time);
     }
     if (gameStatus === "new") {
       setTime(0);
