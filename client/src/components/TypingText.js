@@ -10,8 +10,18 @@ import "../styles/TypingText.scss";
 import { gameContext } from "../providers/GameProvider";
 
 export default function TypingText(props) {
-
-  const { errorCount, setErrorCount, gameStatus, setGameStatus, textId, setTextId, typingText, fetchData, textDifficulty, setTextDifficulty } = useContext(gameContext);
+  const {
+    errorCount,
+    setErrorCount,
+    gameStatus,
+    setGameStatus,
+    textId,
+    setTextId,
+    typingText,
+    fetchData,
+    textDifficulty,
+    setTextDifficulty,
+  } = useContext(gameContext);
 
   console.log("@@error count:", errorCount);
 
@@ -44,7 +54,7 @@ export default function TypingText(props) {
   const onChangeInput = (event) => {
     const input = event.target.value;
     console.log("input: ", input);
-    setInput(input);// purely for display purposes
+    setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
       syncInstanceInputs: true,
@@ -52,20 +62,24 @@ export default function TypingText(props) {
     console.log("typing text: ", typingText);
     // error handling //
     const index = input.length - 1;
+    if (index > 0 && index < 2) {
+      setGameStatus("started");
+    } else if (index === typingText.length) {
+      setGameStatus("done");
+      console.log("Game Done!");
+    }
+
     keyboard.current.setInput(input);
     const letter = typingText[index];
-  
+
     let textTyped = input[index];
-     console.log("texttyped: ", textTyped)
-     console.log("letter:", letter)
+    console.log("texttyped: ", textTyped);
+    console.log("letter:", letter);
     if (letter === textTyped) {
       console.log("matched!");
-      
     } else {
-      
-        setErrorCount(errorCount+1);
-        console.log("It didn't match");
-      
+      setErrorCount(errorCount + 1);
+      console.log("It didn't match");
     }
 
     // check();
@@ -77,21 +91,17 @@ export default function TypingText(props) {
   //   setTyping(e.target.value);
   // };
 
-  
-
   function check(letter, index) {
-    const textTyped = input[index]
+    const textTyped = input[index];
     if (letter === textTyped) {
       return "has-background-success";
-    }
-    else if (textTyped === null) {
+    } else if (textTyped === null) {
       return "background-color";
     }
-    
-    return "has-background-wrong"
-    
+
+    return "has-background-wrong";
+
     console.log("index:", index);
-    
   }
 
   //   <button id="text-button" onClick={fetchData}>
@@ -117,7 +127,7 @@ export default function TypingText(props) {
         placeholder={"Start typing to begin game"}
         onChange={onChangeInput}
       />
-      
+
       <div>Error count: {errorCount} </div>
 
       <Keyboard
