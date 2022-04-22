@@ -35,13 +35,13 @@ export default function GameStats() {
 
     axios.post('http://localhost:3000/games', gameData)
       .then((response) => {
-        console.log("game data successfully saved, response: ", response)
+        // console.log("game data successfully saved, response: ", response)
 
         return axios.post('http://localhost:3000/sessions', sessionData)
 
       })
       .then((response) => {
-        console.log("session data successfully saved, response: ", response)
+        // console.log("session data successfully saved, response: ", response)
       })
       .catch((error) => {
         alert("session data could not be saved, error: ", error)
@@ -73,7 +73,7 @@ export default function GameStats() {
   }
 
   const modifiedGameData = Object.entries({...gameData[gameData.length - 1]});
-  console.log("gameData:", gameData);
+  // console.log("gameData:", gameData);
 
   const gameDataItems = modifiedGameData.map( (item) => {
     return (

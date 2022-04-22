@@ -24,7 +24,7 @@ export default function GameScore() {
   } = useContext(gameContext);
 
   useEffect(() => {
-    console.log("GameScore gameStatus: ", gameStatus);
+    // console.log("GameScore gameStatus: ", gameStatus);
     if (gameStatus === "started") {
       setRunning(true);
     }
@@ -35,7 +35,7 @@ export default function GameScore() {
     if (gameStatus === "new") {
       setTime(0);
     }
-    console.log("GameScore time: ", time);
+    // console.log("GameScore time: ", time);
   }, [gameStatus]);
 
   useEffect(() => {

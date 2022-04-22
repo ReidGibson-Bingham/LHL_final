@@ -13,6 +13,7 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [to, setTo] = useState("");
+  const [error, setError] = useState("");
 
   const clear = function () {
     setMessages([]);
@@ -25,10 +26,24 @@ export default function ChatRoom() {
     setSocket(socket);
 
     // All This stuff should be a Custom Hook, right?
-    
-    socket.on("connect", (event) => {
+
+    //======================
+    // onErrorCountChange = (errorCount) => {
+    //   client.send(
+    //     JSON.stringify({
+    //       type: "contentchange",
+    //       username: this.state.username,
+    //       content: errorCount,
+    //     })
+    //   );
+    // };
+    //
+    //======================
+
+    socket.on("connect", (msg) => {
       console.log("connected");
-      socket.emit(errorCount);
+      socket.emit("clientStatus", errorCount);
+      // setError(msg);
     });
 
     socket.on("notify", (msg) => {
@@ -43,9 +58,9 @@ export default function ChatRoom() {
       setMessages((prev) => ["Broadcast: " + msg.text, ...prev]);
     });
 
-    socket.on("private", (msg) => {
-      setMessages((prev) => [`${msg.from} says: ${msg.text}`, ...prev]);
-    });
+    // socket.on("private", (msg) => {
+    //   setMessages((prev) => [`${msg.from} says: ${msg.text}`, ...prev]);
+    // });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
@@ -90,7 +105,10 @@ export default function ChatRoom() {
         <div>
           <span>{status.active}</span> clients active
         </div>
-        <div className="notify">{notify}</div>
+        {/* <div>
+          <span>{status.errorCount}</span> clients errorCount
+        </div> */}
+        <div className="error">{error}</div>
       </h4>
 
       <div>
@@ -98,9 +116,9 @@ export default function ChatRoom() {
       </div>
       <button onClick={connect}>Login</button>
       <button onClick={disconnect}>Logout</button>
-      <div>
+      {/* <div>
         <input onChange={onToChange} value={to} placeholder="To" />
-      </div>
+      </div> */}
       <div>
         <textarea
           onChange={onTextChange}
@@ -111,6 +129,7 @@ export default function ChatRoom() {
       <button onClick={send}>Send</button>
       <button onClick={clear}>Clear</button>
       <ul>{list}</ul>
+      {/* <TypingText /> */}
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function GameProvider(props) {
     axios
       .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
-        console.log("response data is", response.data); // The
+        // console.log("response data is", response.data); // The
         setTypingText(response.data[textDifficulty].content.trim().split(""));
         //return response.data[randNum].content.split("");
       });
