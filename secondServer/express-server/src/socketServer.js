@@ -1,6 +1,7 @@
 const socketio = require('socket.io');
 
 const users = {};
+// this is what it looks like: users:  { Reid: 'SCsCA_SdYOMK1Fm9AAAB' }
 let connected = 0;
 
 const getUser = function(id) {
@@ -30,6 +31,8 @@ const listen = function(httpServer) {
     server.emit('status', status);
   };
 
+  // server.on('playerStatus', (socket) =>)
+
   server.on('connection', (socket) => {
     // This socket param is the sending socket. Has a unique ID (socket.id)
     // We can use this ID and associate with a specific used
@@ -56,6 +59,7 @@ const listen = function(httpServer) {
 
       const user = getUser(socket.id);
       if (user) {
+        
         return server.to(socket.id).emit('notify', `You are already registered!`);
       }
 
@@ -65,7 +69,7 @@ const listen = function(httpServer) {
 
       // Add user
       users[name] = socket.id;
-      console.log(users);
+      console.log("users: ", users);
       server.to(socket.id).emit('notify', `Registered as: ${name}`);
       sendStatus(server);
 
@@ -121,6 +125,23 @@ const listen = function(httpServer) {
       // Alternative: Send generic "message" event to this socket only (no event name provided)
       // socket.send("msg.text);
     });
+
+    //adding our functionality here vvvvvv
+
+    socket.on('playerStatus', (data) => {
+      
+      const from = getUser(socket.id);
+      console.log("playerStatus: ", from, data);
+
+      const destSocket = users[data.to];
+
+      server.to(destSocket).emit('playerStatus', { ...data, from });
+
+      // if (!from) {
+      //   return server.to(socket.id).emit('notify', `Not Registered`);
+      // }
+
+    })
 
 
   });

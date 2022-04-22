@@ -17,6 +17,9 @@ export default function ChatRoom() {
   const [text, setText] = useState("");
   const [to, setTo] = useState("");
   const [error, setError] = useState("");
+  ////////////////////////////////
+  const [playerStatus, setPlayerStatus] = useState([]);
+  const [compStatus, setCompStatus] = useState(0);
 
   const clear = function () {
     setMessages([]);
@@ -32,7 +35,7 @@ export default function ChatRoom() {
     socket.on('connect', event => {
       console.log("connected");
     });
-
+ 
     socket.on('notify', msg => {
       setNotify(msg);
     });
@@ -49,9 +52,22 @@ export default function ChatRoom() {
       setMessages(prev => [`${msg.from} says: ${msg.text}`, ...prev]);
     });
 
+    socket.on('playerStatus', data => {
+      
+      setPlayerStatus(prev => [`${data.from} says: ${data.data}`, ...prev])
+      console.log("player status to dong:", data.errorCount);
+      setCompStatus(data.errorCount);
+    })
+
+
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
   }, []);
+
+  //
+  useEffect(() => {
+    sendPlayerStatus()
+  }, [errorCount])
 
   const onTextChange = function(event) {
     setText(event.target.value);
@@ -77,13 +93,17 @@ export default function ChatRoom() {
     socket && text && socket.emit('chat', { text, to });
   };
 
+  const sendPlayerStatus = function() {
+    socket && errorCount && socket.emit('playerStatus', { errorCount, to });
+  };
+
   const list = messages.map((msg, i) => {
     return <li key={i}>{msg}</li>;
   });
 
   return (
     <div className="TextShow">
-      <h1>Web Sockets React</h1>
+      <h1>{compStatus}</h1>
       <h4>
         <div>
           <span>{status.connected}</span> clients connected
@@ -103,6 +123,7 @@ export default function ChatRoom() {
       </div>
 
       <button onClick={send}>Send</button>
+      <button onClick={sendPlayerStatus}>Send Player Status</button>
       <button onClick={clear}>Clear</button>
       <ul>
         {list}
