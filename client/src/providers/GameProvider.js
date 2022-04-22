@@ -55,11 +55,7 @@ export default function GameProvider(props) {
     axios.post('http://localhost:3000/games', gameDATA)
       .then((response) => {
 
-        console.log("&& game data:", gameDATA);
-
         console.log("game data successfully saved, response: ", response)
-
-        console.log("**session data:", sessionDATA);
 
         const sessionDATA = {
           user_id: 1,
@@ -69,8 +65,6 @@ export default function GameProvider(props) {
           created_at: null,
           updated_at: null
         }
-
-        console.log("response.data.id: ", response.data.id)
 
         setSessionData(sessionDATA)
 
@@ -97,24 +91,6 @@ export default function GameProvider(props) {
       .catch(() => {
         alert("Error retreiving data")
       })
-
-    // axios.get('http://localhost:3000/games')
-    //   .then((response) => {
-    //     console.log("games response.data:", response.data)
-    //     setGameData(response.data )
-    //     // console.log("Game data:", gameData)
-
-    //     return axios.get('http://localhost:3000/sessions')
-
-    //   })
-    //   .then((response) => {
-
-    //     console.log("sessions response.data:", response.data)
-    //     setSessionData(response.data)
-    //   })
-    //   .catch(() => {
-    //     alert("Error retreiving data")
-    //   })
 
   }
 
