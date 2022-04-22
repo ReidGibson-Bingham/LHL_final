@@ -75,13 +75,13 @@ export default function TypingText(props) {
     const letter = typingText[index];
 
     let textTyped = input[index];
-    console.log("texttyped: ", textTyped);
-    console.log("letter:", letter);
+    console.log("percent done", (input.length / typingText.length) * 100);
+
     if (letter === textTyped) {
-      console.log("matched!");
+      //console.log("matched!");
     } else {
       setErrorCount(errorCount + 1);
-      console.log("It didn't match");
+      //console.log("It didn't match");
     }
 
     // check();
@@ -111,6 +111,10 @@ export default function TypingText(props) {
 
   return (
     <div className="TextShow">
+      <div>multiplayer stats</div>
+
+      <div>user1{errorCount}</div>
+      <div>user2{errorCount}</div>
       <div className="GameStatus">
         {gameStatus === "started"
           ? "Game In Progress..."

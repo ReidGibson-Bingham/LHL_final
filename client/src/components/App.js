@@ -15,6 +15,7 @@ import GameStats from "./GameStats";
 import GameScore from "./GameScore";
 
 import GameProvider from "../providers/GameProvider";
+import ChatRoom from "./ChatRoom";
 
 export default function App() {
   //const { errorCount, textId, textDifficultyId, typingTime } = useAppData();
@@ -63,6 +64,7 @@ export default function App() {
           </div>
           <div className="App">
             <TypingText />
+            <ChatRoom />
           </div>
         </section>
         <div className="game-button">
