@@ -6,8 +6,7 @@ import { gameContext } from "../providers/GameProvider";
 import "../styles/TypingText.scss";
 
 export default function ChatRoom() {
-  
-  const { errorCount } = useContext(gameContext);
+  const { errorCount, percentDone } = useContext(gameContext);
 
   const [socket, setSocket] = useState("");
   const [name, setName] = useState("");
@@ -19,7 +18,7 @@ export default function ChatRoom() {
   const [error, setError] = useState("");
   ////////////////////////////////
   const [playerStatus, setPlayerStatus] = useState([]);
-  const [compStatus, setCompStatus] = useState(0);
+  const [compStatus, setCompStatus] = useState([]);
 
   const clear = function () {
     setMessages([]);
@@ -32,33 +31,31 @@ export default function ChatRoom() {
     setSocket(socket);
 
     // All This stuff should be a Custom Hook, right?
-    socket.on('connect', event => {
+    socket.on("connect", (event) => {
       console.log("connected");
     });
- 
-    socket.on('notify', msg => {
+
+    socket.on("notify", (msg) => {
       setNotify(msg);
     });
 
-    socket.on('status', msg => {
+    socket.on("status", (msg) => {
       setStatus(msg);
     });
 
-    socket.on('public', msg => {
-      setMessages(prev => ["Broadcast: " + msg.text, ...prev]);
+    socket.on("public", (msg) => {
+      setMessages((prev) => ["Broadcast: " + msg.text, ...prev]);
     });
 
-    socket.on('private', msg => {
-      setMessages(prev => [`${msg.from} says: ${msg.text}`, ...prev]);
+    socket.on("private", (msg) => {
+      setMessages((prev) => [`${msg.from} says: ${msg.text}`, ...prev]);
     });
 
-    socket.on('playerStatus', data => {
-      
-      setPlayerStatus(prev => [`${data.from} says: ${data.data}`, ...prev])
+    socket.on("playerStatus", (data) => {
+      setPlayerStatus((prev) => [`${data.from} says: ${data.data}`, ...prev]);
       console.log("player status to dong:", data.errorCount);
-      setCompStatus(data.errorCount);
-    })
-
+      setCompStatus([data.errorCount, data.percentDone]);
+    });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
@@ -66,35 +63,38 @@ export default function ChatRoom() {
 
   //
   useEffect(() => {
-    sendPlayerStatus()
-  }, [errorCount])
+    sendPlayerStatus();
+  }, [errorCount, percentDone]);
 
-  const onTextChange = function(event) {
+  const onTextChange = function (event) {
     setText(event.target.value);
   };
-  const onToChange = function(event) {
+  const onToChange = function (event) {
     setTo(event.target.value);
   };
-  const onNameChange = function(event) {
+  const onNameChange = function (event) {
     setName(event.target.value);
   };
 
-  const connect = function() {
+  const connect = function () {
     console.log("register", name);
-    socket && name && socket.emit('register', name);
+    socket && name && socket.emit("register", name);
   };
 
-  const disconnect = function() {
-    socket && socket.emit('offline');
+  const disconnect = function () {
+    socket && socket.emit("offline");
   };
 
   // Send chat message to the server
-  const send = function() {
-    socket && text && socket.emit('chat', { text, to });
+  const send = function () {
+    socket && text && socket.emit("chat", { text, to });
   };
 
-  const sendPlayerStatus = function() {
-    socket && errorCount && socket.emit('playerStatus', { errorCount, to });
+  const sendPlayerStatus = function () {
+    socket &&
+      errorCount &&
+      percentDone &&
+      socket.emit("playerStatus", { errorCount, percentDone, to });
   };
 
   const list = messages.map((msg, i) => {
@@ -103,7 +103,8 @@ export default function ChatRoom() {
 
   return (
     <div className="TextShow">
-      <h1>{compStatus}</h1>
+      <h1>Errorcount: {compStatus[0]}</h1>
+      <h1>PercentDone: {compStatus[1]}</h1>
       <h4>
         <div>
           <span>{status.connected}</span> clients connected
@@ -114,20 +115,25 @@ export default function ChatRoom() {
         <div className="notify">{notify}</div>
       </h4>
 
-      <div><input onChange={onNameChange} value={name} placeholder="Name" /></div>
+      <div>
+        <input onChange={onNameChange} value={name} placeholder="Name" />
+      </div>
       <button onClick={connect}>Login</button>
       <button onClick={disconnect}>Logout</button>
-      <div><input onChange={onToChange} value={to} placeholder="To" /></div>
       <div>
-        <textarea onChange={onTextChange} placeholder="Type a message" ></textarea>
+        <input onChange={onToChange} value={to} placeholder="To" />
+      </div>
+      <div>
+        <textarea
+          onChange={onTextChange}
+          placeholder="Type a message"
+        ></textarea>
       </div>
 
       <button onClick={send}>Send</button>
-      <button onClick={sendPlayerStatus}>Send Player Status</button>
+      {/* <button onClick={sendPlayerStatus}>Send Player Status</button> */}
       <button onClick={clear}>Clear</button>
-      <ul>
-        {list}
-      </ul>
-    </div >
+      <ul>{list}</ul>
+    </div>
   );
 }

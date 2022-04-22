@@ -15,12 +15,9 @@ export default function TypingText(props) {
     setErrorCount,
     gameStatus,
     setGameStatus,
-    textId,
-    setTextId,
     typingText,
-    fetchData,
-    textDifficulty,
-    setTextDifficulty,
+    percentDone,
+    setPercentDone,
   } = useContext(gameContext);
 
   //const [text, setText] = useState("loading text".split(""));
@@ -28,6 +25,7 @@ export default function TypingText(props) {
   //------------------------------------
   const [input, setInput] = useState("");
   const [layout, setLayout] = useState("default");
+
   const keyboard = useRef();
 
   const onChange = (input) => {
@@ -40,7 +38,6 @@ export default function TypingText(props) {
   };
 
   const onKeyPress = (button) => {
-
     /**
      * If you want to handle the shift and caps lock buttons
      */
@@ -49,13 +46,13 @@ export default function TypingText(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
-    
+
     setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
       syncInstanceInputs: true,
     });
-    
+
     // error handling //
     const index = input.length - 1;
     if (input.length === 1) {
@@ -64,20 +61,18 @@ export default function TypingText(props) {
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
       event.target.disabled = true;
-    
     }
 
     keyboard.current.setInput(input);
     const letter = typingText[index];
 
     let textTyped = input[index];
-    
-    
+    setPercentDone((input.length / typingText.length) * 100);
+    console.log("percent done", percentDone);
+
     if (letter === textTyped) {
-    
     } else {
       setErrorCount(errorCount + 1);
-      
     }
 
     // check();
@@ -91,18 +86,14 @@ export default function TypingText(props) {
 
   function check(letter, index) {
     const textTyped = input[index];
-    
+
     if (letter === textTyped) {
-    
       return "has-background-success";
     } else if (!textTyped) {
-    
       return "background-color";
     }
-    
-    return "has-background-wrong";
 
-    
+    return "has-background-wrong";
   }
 
   return (

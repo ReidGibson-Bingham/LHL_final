@@ -1,10 +1,10 @@
-const socketio = require('socket.io');
+const socketio = require("socket.io");
 
 const users = {};
 // this is what it looks like: users:  { Reid: 'SCsCA_SdYOMK1Fm9AAAB' }
 let connected = 0;
 
-const getUser = function(id) {
+const getUser = function (id) {
   for (const user in users) {
     if (users[user] === id) {
       return user;
@@ -13,36 +13,35 @@ const getUser = function(id) {
 };
 
 // Web socket connection listener
-const listen = function(httpServer) {
-
+const listen = function (httpServer) {
   const server = socketio(httpServer, {
     cors: {
-      // set to whatever localhost you're running 
-      origin: "http://localhost:3002",
+      // set to whatever localhost you're running
+      origin: "http://localhost:3000",
       methods: ["GET", "POST"],
     },
   });
 
   // Can use a closure.  server is remembered
-  const sendStatus = function() {
+  const sendStatus = function () {
     const active = Object.keys(users).length;
     const status = { connected, active };
     console.log(status);
-    server.emit('status', status);
+    server.emit("status", status);
   };
 
   // server.on('playerStatus', (socket) =>)
 
-  server.on('connection', (socket) => {
+  server.on("connection", (socket) => {
     // This socket param is the sending socket. Has a unique ID (socket.id)
     // We can use this ID and associate with a specific used
     console.log("connected:  ", socket.id);
 
-    server.to(socket.id).emit('notify', `Connected [ ${socket.id} ]`);
+    server.to(socket.id).emit("notify", `Connected [ ${socket.id} ]`);
     connected++;
     sendStatus();
 
-    socket.on('disconnect', () => {
+    socket.on("disconnect", () => {
       console.log("disconnect: ", socket.id);
       connected--;
 
@@ -54,73 +53,74 @@ const listen = function(httpServer) {
     });
 
     // Handle an "offline" message
-    socket.on('register', name => {
+    socket.on("register", (name) => {
       console.log("register: ", name);
 
       const user = getUser(socket.id);
       if (user) {
-        
-        return server.to(socket.id).emit('notify', `You are already registered!`);
+        return server
+          .to(socket.id)
+          .emit("notify", `You are already registered!`);
       }
 
       if (users[name]) {
-        return server.to(socket.id).emit('notify', 'This name is already registered!');
+        return server
+          .to(socket.id)
+          .emit("notify", "This name is already registered!");
       }
 
       // Add user
       users[name] = socket.id;
       console.log("users: ", users);
-      server.to(socket.id).emit('notify', `Registered as: ${name}`);
+      server.to(socket.id).emit("notify", `Registered as: ${name}`);
       sendStatus(server);
 
       console.log(users);
     });
 
     // Handle an "offine" message (only gets socket.id)
-    socket.on('offline', () => {
+    socket.on("offline", () => {
       console.log("offine: ", socket.id);
 
       // Find user
       const user = getUser(socket.id);
       if (!user) {
-        return server.to(socket.id).emit('notify', `Not Registered`);
+        return server.to(socket.id).emit("notify", `Not Registered`);
       }
 
       delete users[user];
       console.log(users);
-      server.to(socket.id).emit('notify', `Offline ( ${user} )`);
+      server.to(socket.id).emit("notify", `Offline ( ${user} )`);
       sendStatus(server);
     });
 
-
     // Do something whenever a "chat" event is received
-    socket.on('chat', msg => {
-      
+    socket.on("chat", (msg) => {
       const from = getUser(socket.id);
       console.log("chat: ", from, msg);
 
       if (!from) {
-        return server.to(socket.id).emit('notify', `Not Registered`);
+        return server.to(socket.id).emit("notify", `Not Registered`);
       }
 
       // Broadcast received message to all if no "to" received
       if (!msg.to) {
-        server.emit('public', { ...msg, from });
-        server.to(socket.id).emit('notify', `Sent: ${msg.text}`);
+        server.emit("public", { ...msg, from });
+        server.to(socket.id).emit("notify", `Sent: ${msg.text}`);
         return;
       }
 
       // Find socket id for this user, if exists
       const destSocket = users[msg.to];
       if (!destSocket) {
-        server.to(socket.id).emit('status', msg.to + ' is not active');
+        server.to(socket.id).emit("status", msg.to + " is not active");
         return;
       }
 
-      server.to(destSocket).emit('private', { ...msg, from });
+      server.to(destSocket).emit("private", { ...msg, from });
 
       // Send confirmation message back to the sender (by socket id)
-      server.to(socket.id).emit('notify', `Sent to ${msg.to}: ${msg.text}`);
+      server.to(socket.id).emit("notify", `Sent to ${msg.to}: ${msg.text}`);
 
       // Alternative: Send generic "message" event to this socket only (no event name provided)
       // socket.send("msg.text);
@@ -128,24 +128,19 @@ const listen = function(httpServer) {
 
     //adding our functionality here vvvvvv
 
-    socket.on('playerStatus', (data) => {
-      
+    socket.on("playerStatus", (data) => {
       const from = getUser(socket.id);
       console.log("playerStatus: ", from, data);
 
       const destSocket = users[data.to];
 
-      server.to(destSocket).emit('playerStatus', { ...data, from });
+      server.to(destSocket).emit("playerStatus", { ...data, from });
 
       // if (!from) {
       //   return server.to(socket.id).emit('notify', `Not Registered`);
       // }
-
-    })
-
-
+    });
   });
-
 };
 
 module.exports = { listen };

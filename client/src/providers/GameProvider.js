@@ -17,16 +17,12 @@ export default function GameProvider(props) {
   const [gameData, setGameData] = useState({});
   const [sessionData, setSessionData] = useState([]);
   const [sessionsData, setSessionsData] = useState([]);
-
-
-
+  const [percentDone, setPercentDone] = useState(0);
 
   const fetchData = (textDifficulty) => {
-   
     axios
       .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
-        
         setTypingText(response.data[textDifficulty].content.trim().split(""));
         //return response.data[randNum].content.split("");
       });
@@ -39,23 +35,22 @@ export default function GameProvider(props) {
   }, []);
 
   const saveGameData = function () {
-
     const gameDATA = {
       is_single_player: null,
       player1_id: 1,
       player2_id: 0,
       game_datetime: null,
       text_id: textDifficulty,
-      created_at: null, 
-      updated_at: null
-    }
+      created_at: null,
+      updated_at: null,
+    };
 
-    setGameData(gameDATA)
+    setGameData(gameDATA);
 
-    axios.post('http://localhost:3000/games', gameDATA)
+    axios
+      .post("http://localhost:3000/games", gameDATA)
       .then((response) => {
-
-        console.log("game data successfully saved, response: ", response)
+        console.log("game data successfully saved, response: ", response);
 
         const sessionDATA = {
           user_id: 1,
@@ -63,36 +58,32 @@ export default function GameProvider(props) {
           error_count: errorCount,
           timer: gameTotalTime,
           created_at: null,
-          updated_at: null
-        }
+          updated_at: null,
+        };
 
-        setSessionData(sessionDATA)
+        setSessionData(sessionDATA);
 
-        return axios.post('http://localhost:3000/sessions', sessionDATA)
-
+        return axios.post("http://localhost:3000/sessions", sessionDATA);
       })
       .then((response) => {
-        console.log("session data successfully saved, response: ", response)
+        console.log("session data successfully saved, response: ", response);
       })
       .catch((error) => {
-        alert("session data could not be saved, error: ", error)
-      })
+        alert("session data could not be saved, error: ", error);
+      });
+  };
 
-  }
-
-  const getGamesData = function() {
-
-    axios.get('http://localhost:3000/sessions')
+  const getGamesData = function () {
+    axios
+      .get("http://localhost:3000/sessions")
       .then((response) => {
-        setSessionsData(response.data)
-        console.log("response.data:", response.data)
-        
+        setSessionsData(response.data);
+        console.log("response.data:", response.data);
       })
       .catch(() => {
-        alert("Error retreiving data")
-      })
-
-  }
+        alert("Error retreiving data");
+      });
+  };
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = {
@@ -109,12 +100,14 @@ export default function GameProvider(props) {
     gameTotalTime,
     setGameTotalTime,
     gameData,
-    saveGameData, 
+    saveGameData,
     getGamesData,
     setSessionData,
     sessionData,
     setSessionsData,
-    sessionsData
+    sessionsData,
+    percentDone,
+    setPercentDone,
   };
 
   // We can now use this as a component to wrap anything
