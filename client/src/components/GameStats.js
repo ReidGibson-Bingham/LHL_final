@@ -9,7 +9,15 @@ import { gameContext } from "../providers/GameProvider";
 
 export default function GameStats() {
 
-  const {textDifficulty, saveGameData, getGamesData, gameData, setGameData, sessionsData, setSessionData} = useContext(gameContext);
+  const {
+    textDifficulty,
+    saveGameData,
+    getGamesData,
+    gameData,
+    setGameData,
+    sessionsData,
+    setSessionData
+  } = useContext(gameContext);
 
 
   const sessionItems = sessionsData.map( (session) => {
