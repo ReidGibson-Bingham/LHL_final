@@ -18,6 +18,7 @@ export default function GameProvider(props) {
   const [sessionData, setSessionData] = useState([]);
   const [sessionsData, setSessionsData] = useState([]);
   const [user, setUser] = useState({});
+  const [percentDone, setPercentDone] = useState(0);
 
   const fetchData = (textDifficulty) => {
     axios
@@ -89,24 +90,6 @@ export default function GameProvider(props) {
       .catch(() => {
         alert("Error retreiving data");
       });
-
-    // axios.get('http://localhost:3000/games')
-    //   .then((response) => {
-    //     console.log("games response.data:", response.data)
-    //     setGameData(response.data )
-    //     // console.log("Game data:", gameData)
-
-    //     return axios.get('http://localhost:3000/sessions')
-
-    //   })
-    //   .then((response) => {
-
-    //     console.log("sessions response.data:", response.data)
-    //     setSessionData(response.data)
-    //   })
-    //   .catch(() => {
-    //     alert("Error retreiving data")
-    //   })
   };
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
@@ -132,6 +115,8 @@ export default function GameProvider(props) {
     sessionsData,
     user,
     setUser,
+    percentDone,
+    setPercentDone,
   };
 
   // We can now use this as a component to wrap anything

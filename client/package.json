@@ -13,6 +13,7 @@
     "react-scripts": "^5.0.1",
     "react-simple-keyboard": "^3.4.107",
     "react-slide-toggle": "^0.2.5",
+    "socket.io-client": "^4.4.1",
     "universal-cookie": "^4.0.0"
   },
   "scripts": {

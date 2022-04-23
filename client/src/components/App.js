@@ -15,8 +15,15 @@ import Signup from "./Signup";
 import TopNavLogin from "../navigation/TopNavLogin";
 import TopNavLogout from "../navigation/TopNavLogout";
 
+import ChatRoom from "./ChatRoom";
+
 export default function App() {
   const { user, setUser } = useContext(gameContext);
+  const [competitiveMode, setCompetitiveMode] = useState(false);
+
+  const compStatusButton = function () {
+    setCompetitiveMode(true);
+  };
 
   console.log("Apps user: ", user);
   return (
@@ -38,9 +45,16 @@ export default function App() {
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
           </div>
-          <div className="App col-sm-3">{!user.name && <Signup />}</div>
+          <div className="App col-sm-3">
+            {user.name && competitiveMode && <ChatRoom />}
+          </div>
         </div>
       </section>
+      <div className="row">
+        <div className="mode-button">
+          <button onClick={compStatusButton}>Competitive Mode</button>
+        </div>
+      </div>
     </main>
   );
 }
