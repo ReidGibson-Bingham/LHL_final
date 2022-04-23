@@ -17,7 +17,7 @@ const listen = function (httpServer) {
   const server = socketio(httpServer, {
     cors: {
       // set to whatever localhost you're running
-      origin: "http://localhost:3000",
+      origin: "*",
       methods: ["GET", "POST"],
     },
   });
