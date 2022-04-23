@@ -3,10 +3,6 @@ import "../styles/App.scss";
 import { useState, useContext, useEffect } from "react";
 import { gameContext } from "../providers/GameProvider";
 
-import axios from "axios";
-
-import TopNavbar from "../navigation/TopNavbar.js";
-
 import TypingText from "./TypingText";
 
 import GameMode from "./GameMode";
