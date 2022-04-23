@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import "../styles/Signup.scss";
+import { gameContext } from "../providers/GameProvider";
 
-export default function Form() {
+export default function Signup() {
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +12,23 @@ export default function Form() {
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+
+  const {
+    errorCount,
+    setErrorCount,
+    gameStatus,
+    setGameStatus,
+    textId,
+    setTextId,
+    typingText,
+    fetchData,
+    textDifficulty,
+    setTextDifficulty,
+    gameTotalTime,
+    setGameTotalTime,
+    user,
+    setUser,
+  } = useContext(gameContext);
 
   // Handling the name change
   const handleName = (e) => {
@@ -43,9 +62,11 @@ export default function Form() {
       axios
         .post(`http://localhost:3000/users`, userData)
         .then((res) => {
-          console.log("post user", res, "name", name);
+          console.log("post user", res.data, "name", name);
+          setUser(res.data);
         })
         .catch((error) => {
+          setError(error);
           console.log(error.response);
         });
       setError(false);
@@ -79,10 +100,10 @@ export default function Form() {
       </div>
     );
   };
-
+  //if (user === {}) {
   return (
     <div className="form-container">
-      <h1>User Registration</h1>
+      <h3>User Registration</h3>
 
       {/* Calling to the methods */}
       <span className="messages">
@@ -90,36 +111,52 @@ export default function Form() {
         {successMessage()}
       </span>
 
-      <form className="sign-up-container"> 
+      <form className="sign-up-container">
         {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
-        <input
-          onChange={handleName}
-          className="input"
-          value={name}
-          type="text"
-        />
-
-        <label className="label">Email</label>
-        <input
-          onChange={handleEmail}
-          className="input"
-          value={email}
-          type="email"
-        />
-
-        <label className="label">Password</label>
-        <input
-          onChange={handlePassword}
-          className="input"
-          value={password}
-          type="password"
-        />
-
-        <button onClick={handleSubmit} className="btn" type="submit">
-          Submit
-        </button>
+        <div className="row">
+          <label className="label col-sm-4">Name:</label>
+          <input
+            onChange={handleName}
+            className="input col-sm-2"
+            value={name}
+            type="text"
+          />
+        </div>
+        <div className="row">&nbsp;</div>
+        <div className="row">
+          <label className="label col-sm-4">Email:</label>
+          <input
+            onChange={handleEmail}
+            className="input col-sm-2"
+            value={email}
+            type="email"
+          />
+        </div>
+        <div className="row">&nbsp;</div>
+        <div className="row">
+          <label className="label col-sm-4">Password:</label>
+          <input
+            onChange={handlePassword}
+            className="input col-sm-2"
+            value={password}
+            type="password"
+          />
+        </div>
+        <div className="row">&nbsp;</div>
+        <div className="row text-center">
+          <div className="align-items-center">
+            <button
+              onClick={handleSubmit}
+              className="dropdown-content test"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
+  //}
+  //return <div className="form-container"></div>;
 }
