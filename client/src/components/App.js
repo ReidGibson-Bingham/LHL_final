@@ -1,6 +1,7 @@
 import "../styles/App.scss";
 
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { gameContext } from "../providers/GameProvider";
 
 import axios from "axios";
 
@@ -13,62 +14,37 @@ import GameMode from "./GameMode";
 import GameStats from "./GameStats";
 
 import GameScore from "./GameScore";
+import Signup from "./Signup";
 
-import GameProvider from "../providers/GameProvider";
+import TopNavLogin from "../navigation/TopNavLogin";
+import TopNavLogout from "../navigation/TopNavLogout";
 
 export default function App() {
-  //const { errorCount, textId, textDifficultyId, typingTime } = useAppData();
-  // const [gameStatus, setGameStatus] = useState("new"); // statuses => new, started, done
-  // const [errorCount, setErrorCount] = useState(0);
-  // const [textId, setTextId] = useState(0);
-  // const [typingText, setTypingText] = useState("no text".split(""));
-  // const [textDifficulty, setTextDifficulty] = useState(0);
+  const { user, setUser } = useContext(gameContext);
 
-  // const setErrCount = (errorCount) => setErrorCount(errorCount);
-  // const fetchData = (textDifficulty) => {
-  //   //console.log("fetch data ??");
-  //   const min = 1;
-  //   const max = 4;
-  //   const randNum = Math.floor(Math.random() * (max - min));
-  //   axios
-  //     .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
-  //     .then((response) => {
-  //       // handle success
-  //       console.log("response data is", response.data); // The entire response from the Rails API
-  //       //console.log("randomnumber", randNum);
-  //       // console.log("response.data.content", response.data[randNum].content); // Just the message
-  //       setTypingText(response.data[randNum].content.split(""));
-  //       //return response.data[randNum].content.split("");
-  //     });
-  //   //console.log("text is:", text);
-  // };
-  // useEffect(() => {
-  //   //setTypingText(fetchData(textDifficulty));
-  //   //need to call this on textDifficulty selection.
-  //   fetchData(textDifficulty);
-  // }, []);
-
+  console.log("Apps user: ", user);
   return (
     <main className="layout">
-      <GameProvider>
-        <TopNavbar />
-        <section className="typing-text">
-          <div className="row">
-            <div className="col-sm-8">
-              <GameMode />
-            </div>
-            <div className="col-sm-4">
-              <GameScore />
-            </div>
+      {!user.name && <TopNavLogin />} {user.name && <TopNavLogout />}
+      <section className="typing-text">
+        <div className="row">
+          <div className="col-sm-8">
+            <GameMode />
           </div>
-          <div className="App">
-            <TypingText />
+          <div className="col-sm-4">
+            <GameScore />
           </div>
-        </section>
-        <div className="game-button">
-          <GameStats />
         </div>
-      </GameProvider>
+        <div className="row">
+          <div className="App col-sm-3">
+            <GameStats />
+          </div>
+          <div className="App col-sm-6">
+            {!user.name && <Signup />} {user.name && <TypingText />}
+          </div>
+          <div className="App col-sm-3">{!user.name && <Signup />}</div>
+        </div>
+      </section>
     </main>
   );
 }
