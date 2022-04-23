@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { gameContext } from "../providers/GameProvider";
 
 import "../styles/TypingText.scss";
+// import ProgressBar from "./ProgressBar";
 
 export default function ChatRoom() {
   const { errorCount, percentDone } = useContext(gameContext);
@@ -15,7 +16,7 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [to, setTo] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   ////////////////////////////////
   const [playerStatus, setPlayerStatus] = useState([]);
   const [compStatus, setCompStatus] = useState([]);
@@ -64,7 +65,7 @@ export default function ChatRoom() {
   //
   useEffect(() => {
     sendPlayerStatus();
-  }, [errorCount, percentDone]);
+  }, [percentDone]);
 
   const onTextChange = function (event) {
     setText(event.target.value);
@@ -101,10 +102,41 @@ export default function ChatRoom() {
     return <li key={i}>{msg}</li>;
   });
 
+  //--------------------progress bar----------
+  const containerStyles = {
+    height: 20,
+    width: "100%",
+    backgroundColor: "#e0e0de",
+    borderRadius: 50,
+    margin: 50,
+  };
+
+  const fillerStyles = {
+    height: "100%",
+    width: `${compStatus[1]}%`,
+    backgroundColor: "#6a1b9a",
+    borderRadius: "inherit",
+    textAlign: "right",
+  };
+
+  const labelStyles = {
+    padding: 5,
+    color: "white",
+    fontWeight: "bold",
+  };
+
+  //------------------------
+
   return (
     <div className="TextShow">
       <h1>Errorcount: {compStatus[0]}</h1>
       <h1>PercentDone: {compStatus[1]}</h1>
+      {/* <ProgressBar PercentDone={compStatus[1]} /> */}
+      <div style={containerStyles}>
+        <div style={fillerStyles}>
+          <span style={labelStyles}>{compStatus[1]}</span>
+        </div>
+      </div>
       <h4>
         <div>
           <span>{status.connected}</span> clients connected
