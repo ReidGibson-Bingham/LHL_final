@@ -61,6 +61,7 @@ export default function TypingText(props) {
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
       event.target.disabled = true;
+      
     }
 
     keyboard.current.setInput(input);

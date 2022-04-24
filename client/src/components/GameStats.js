@@ -1,5 +1,6 @@
-import React, {Fragment, useState, useContext} from "react";
+import React, {Fragment, useState, useContext, useEffect} from "react";
 import axios from "axios";
+import SaveGame from "./SaveGame";
 
 //import "./styles.css";
 import "../styles/GameStats.scss";
@@ -11,8 +12,9 @@ export default function GameStats() {
 
   const {
     textDifficulty,
-    saveGameData,
     getGamesData,
+    gameStatus,
+    setGameStatus,
     gameData,
     setGameData,
     sessionsData,
@@ -40,12 +42,19 @@ export default function GameStats() {
 
       </div>
     )
-
+      
   })
+
+  
 
   return (
     <Fragment>
-      <button className='stats-button' onClick={saveGameData}> Save Game </button>
+      
+      {console.log("gameStatus: ",gameStatus)}
+      <div className="GameStatus">
+        {gameStatus === "done" && <SaveGame />}
+      </div>
+
       <button className='stats-button' onClick={getGamesData}> get stats </button>
       <ul className="stats-list">
         {sessionItems}

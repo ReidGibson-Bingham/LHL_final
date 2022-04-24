@@ -24,6 +24,7 @@ export default function ChatRoom() {
   const clear = function () {
     setMessages([]);
   };
+  
 
   // This app makes a websocket connection immediately
   useEffect(() => {
@@ -57,6 +58,11 @@ export default function ChatRoom() {
       console.log("player status to dong:", data.errorCount);
       setCompStatus([data.errorCount, data.percentDone]);
     });
+
+    socket.on("autoConnect", (name) => {
+      setTo(name);
+      console.log("&& to:", name)
+    })
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
@@ -144,14 +150,14 @@ export default function ChatRoom() {
         <div>
           <span>{status.active}</span> clients active
         </div>
-        <div className="notify">{notify}</div>
+        <div className="notify">broadcast: {notify}</div>
       </h4>
 
       <div>
         <input onChange={onNameChange} value={name} placeholder="Name" />
       </div>
-      <button onClick={connect}>Login</button>
-      <button onClick={disconnect}>Logout</button>
+      <button onClick={connect}>connect</button>
+      <button onClick={disconnect}>disconnect</button>
       <div>
         <input onChange={onToChange} value={to} placeholder="To" />
       </div>

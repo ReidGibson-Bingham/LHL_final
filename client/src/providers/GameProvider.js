@@ -19,6 +19,7 @@ export default function GameProvider(props) {
   const [sessionsData, setSessionsData] = useState([]);
   const [user, setUser] = useState({});
   const [percentDone, setPercentDone] = useState(0);
+  const [competitiveMode, setCompetitiveMode] = useState(false);
 
   const fetchData = (textDifficulty) => {
     axios
@@ -36,6 +37,7 @@ export default function GameProvider(props) {
   }, []);
 
   const saveGameData = function () {
+
     const gameDATA = {
       is_single_player: null,
       player1_id: 1,
@@ -67,18 +69,20 @@ export default function GameProvider(props) {
         };
 
         console.log("response.data.id: ", response.data.id);
-
+        console.log("++session Data: ", sessionDATA);
         setSessionData(sessionDATA);
 
         return axios.post("http://localhost:3000/sessions", sessionDATA);
       })
       .then((response) => {
         console.log("session data successfully saved, response: ", response);
+        
       })
       .catch((error) => {
         alert("session data could not be saved, error: ", error);
       });
   };
+  
 
   const getGamesData = function () {
     axios
@@ -117,6 +121,8 @@ export default function GameProvider(props) {
     setUser,
     percentDone,
     setPercentDone,
+    competitiveMode,
+    setCompetitiveMode,
   };
 
   // We can now use this as a component to wrap anything

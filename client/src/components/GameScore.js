@@ -27,10 +27,11 @@ export default function GameScore() {
     console.log("GameScore gameStatus: ", gameStatus);
     if (gameStatus === "started") {
       setRunning(true);
+      console.log("** time:", time);
     }
     if (gameStatus === "done") {
       setRunning(false);
-      setGameTotalTime(time);
+      // setGameTotalTime(time);
     }
     if (gameStatus === "new") {
       setTime(0);
@@ -42,7 +43,9 @@ export default function GameScore() {
     let interval;
     if (running) {
       interval = setInterval(() => {
+        console.log("testing: ", time);
         setTime((prevTime) => prevTime + 10);
+        setGameTotalTime((prevTime) => prevTime + 10)
       }, 10);
     } else if (!running) {
       clearInterval(interval);

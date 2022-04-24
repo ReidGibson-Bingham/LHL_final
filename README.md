@@ -21,6 +21,8 @@ Here are some projects that have been built using this boilerplate.
 - [StartDuck](https://github.com/JerChuang/StartDuck)
 - [Change-App](https://github.com/ZHShang/Change-App)
 
+
+
 ## Using the boilerplate
 
 First, fork this boilerplate so you get your own copy of it. Once you have done that, you can clone your new repo to your machine, and get started.
@@ -28,7 +30,13 @@ First, fork this boilerplate so you get your own copy of it. Once you have done 
 You need **TWO** terminals for this.
 
 In one terminal, run `bundle` to install the dependencies. Run `bin/rake db:setup` to create the databases (called rails_project_development by default). Run `bin/rails s` to run the server.
+
+# Ruby Backend server command
 - bin/rails s -b 0.0.0.0
+# Websocket server command 
+- npm run local
+# frontend command 
+- npm start
 
 In the other terminal, `cd` into `client`. Run `npm install`. Rename the `.env.example` file to be called `.env`. Then run `npm start` and go to `localhost:3000` in your browser.
 
