@@ -17,6 +17,7 @@ export default function GameProvider(props) {
   const [gameData, setGameData] = useState({});
   const [sessionData, setSessionData] = useState([]);
   const [sessionsData, setSessionsData] = useState([]);
+  const [user, setUser] = useState({});
   const [percentDone, setPercentDone] = useState(0);
 
   const fetchData = (textDifficulty) => {
@@ -50,7 +51,11 @@ export default function GameProvider(props) {
     axios
       .post("http://localhost:3000/games", gameDATA)
       .then((response) => {
+        console.log("&& game data:", gameDATA);
+
         console.log("game data successfully saved, response: ", response);
+
+        console.log("**session data:", sessionDATA);
 
         const sessionDATA = {
           user_id: 1,
@@ -60,6 +65,8 @@ export default function GameProvider(props) {
           created_at: null,
           updated_at: null,
         };
+
+        console.log("response.data.id: ", response.data.id);
 
         setSessionData(sessionDATA);
 
@@ -106,6 +113,8 @@ export default function GameProvider(props) {
     sessionData,
     setSessionsData,
     sessionsData,
+    user,
+    setUser,
     percentDone,
     setPercentDone,
   };

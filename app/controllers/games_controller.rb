@@ -26,7 +26,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:is_single_player, :player1_id, :player2_id, :game_datetime, :text_id, :created_at, :updated_at)
+    params.require(:game).permit(:user_id, :error_count, :total_time, :text_id, :created_at, :updated_at)
   end
 
 
