@@ -76,13 +76,12 @@ Game.connection.execute('ALTER SEQUENCE games_id_seq RESTART WITH 1')
 #game_datetime: Time.now, 
 # user1 = User.find_or_create_by! name: 'Marvin the Martian'
 # user1.games.create!([{player1_id: user1.id, player2_id: 6, text_id: 5}])
-Game.create([{player1_id: user1.id, player2_id: 0, game_datetime: Time.now, text_id: 1},  {player1_id: user1.id, player2_id: user2.id, game_datetime: Time.now, text_id: 1},  {player1_id: user3.id, player2_id: user1.id, game_datetime: Time.now, text_id: 2}])
+#  Game.create([{user_id: 1, text_id: 1, error_count: 10, total_time: 5000},  {user_id: 2, text_id: 1, error_count: 11, total_time: 10000},  {user_id: 3, text_id: 2, error_count: 12, total_time: 11000}])
+
+Game.connection.execute('INSERT INTO games (user_id, text_id, error_count, total_time, created_at, 
+updated_at) values (1, 1, 10, 5000, NOW(), NOW())')
+Game.connection.execute('INSERT INTO games (user_id, text_id, error_count, total_time, created_at, updated_at) values (1, 1, 11, 10000, NOW(), NOW())')
+Game.connection.execute('INSERT INTO games (user_id, text_id, error_count, total_time, created_at, updated_at) values (2, 2, 12, 11000, NOW(), NOW())')
 
 puts "created #{Game.count} games"
 
-Session.destroy_all 
-Session.connection.execute('ALTER SEQUENCE sessions_id_seq RESTART WITH 1')
-
-Session.create([{user_id: '1', game_id: '1', error_count: '10', timer: '60'}, {user_id: '2', game_id: '2', error_count: '5', timer: '30'},{user_id: '3', game_id: '3', error_count: '0', timer: '50'},{user_id: '4', game_id: '3', error_count: '20', timer: '70'}])
-
-puts "created #{Session.count} sessions"
