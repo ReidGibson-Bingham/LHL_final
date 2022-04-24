@@ -16,19 +16,10 @@ ActiveRecord::Schema.define(version: 2022_04_24_185133) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.string "user_id"
-    t.string "error_count"
-    t.string "total_time"
-    t.string "text_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.string "user_id"
-    t.string "game_id"
+    t.bigint "user_id"
     t.integer "error_count"
-    t.integer "timer"
+    t.bigint "total_time"
+    t.bigint "text_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
