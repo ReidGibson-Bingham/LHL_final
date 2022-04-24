@@ -79,19 +79,15 @@ const listen = function (httpServer) {
 
       const userNameArray = Object.keys(users);
 
-      server.emit("autoConnect", name)
-      
-      // server needs to broadcast name before it sends the name of the first signed in user to the socket id 
+      server.emit("autoConnect", name);
+
+      // server needs to broadcast name before it sends the name of the first signed in user to the socket id
 
       if (userNameArray.length > 1) {
+        server.to(socket.id).emit("autoConnect", userNameArray[0]);
 
-        server.to(socket.id).emit("autoConnect", userNameArray[0])
-
-        // console.log("testtest", userNameArray);
-
+        console.log("testtest", userNameArray);
       }
-
-      
 
       // server.to(socket.id).emit("notify", `Registered as: ${name}`);
       // sendStatus(server);
@@ -127,7 +123,7 @@ const listen = function (httpServer) {
       // Broadcast received message to all if no "to" received
       if (!msg.to) {
         server.emit("public", { ...msg, from });
-        
+
         server.to(socket.id).emit("notify", `Sent: ${msg.text}`);
         return;
       }
@@ -161,9 +157,7 @@ const listen = function (httpServer) {
       // if (!from) {
       //   return server.to(socket.id).emit('notify', `Not Registered`);
       // }
-
     });
-
   });
 };
 

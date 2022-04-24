@@ -24,7 +24,6 @@ export default function ChatRoom() {
   const clear = function () {
     setMessages([]);
   };
-  
 
   // This app makes a websocket connection immediately
   useEffect(() => {
@@ -61,8 +60,8 @@ export default function ChatRoom() {
 
     socket.on("autoConnect", (name) => {
       setTo(name);
-      console.log("&& to:", name)
-    })
+      console.log("&& to:", name);
+    });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
@@ -150,7 +149,7 @@ export default function ChatRoom() {
         <div>
           <span>{status.active}</span> clients active
         </div>
-        <div className="notify">broadcast: {notify}</div>
+        {/* <div className="notify">broadcast: {notify}</div> */}
       </h4>
 
       <div>
