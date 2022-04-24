@@ -19,6 +19,7 @@ export default function GameProvider(props) {
   const [sessionsData, setSessionsData] = useState([]);
   const [user, setUser] = useState({});
   const [percentDone, setPercentDone] = useState(0);
+  const [competitiveMode, setCompetitiveMode] = useState(false);
 
   const fetchData = (textDifficulty) => {
     axios
@@ -117,6 +118,8 @@ export default function GameProvider(props) {
     setUser,
     percentDone,
     setPercentDone,
+    competitiveMode,
+    setCompetitiveMode,
   };
 
   // We can now use this as a component to wrap anything

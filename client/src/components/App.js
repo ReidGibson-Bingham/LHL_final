@@ -18,8 +18,8 @@ import TopNavLogout from "../navigation/TopNavLogout";
 import ChatRoom from "./ChatRoom";
 
 export default function App() {
-  const { user, setUser } = useContext(gameContext);
-  const [competitiveMode, setCompetitiveMode] = useState(false);
+  const { user, setUser, competitiveMode, setCompetitiveMode } =
+    useContext(gameContext);
 
   const compStatusButton = function () {
     setCompetitiveMode(true);
