@@ -17,27 +17,28 @@ export default function GameStats() {
     setGameStatus,
     gameData,
     setGameData,
-    sessionsData,
-    setSessionData
+    gamesData,
+    setGamesData,
+    
   } = useContext(gameContext);
 
 
-  const sessionItems = sessionsData.map( (session) => {
-    session = Object.values(session);
+  const gameItems = gamesData.map( (game) => {
+    game = Object.values(game);
     
     return (
-      <div key={session[0]}>
+      <div key={game[0]}>
         
         <br></br>
-        Game ID: {session.slice(2, 3)}
+        Game ID: {game.slice(2, 3)}
         <br></br>
-        User ID: {session.slice(1, 2)}
+        User ID: {game.slice(1, 2)}
         <br></br> 
-        Error Count: {session.slice(3, 4)} 
+        Error Count: {game.slice(3, 4)} 
         <br></br> 
-        Time (seconds): {parseFloat(String(session.slice(4, 5))) * 0.001}
+        Time (seconds): {parseFloat(String(game.slice(4, 5))) * 0.001}
         <br></br>
-        Created on: {String(session.slice(5, 6)).substring(0, 10) + ' at: ' + String(session.slice(5, 6)).substring(11, 20)}
+        Created on: {String(game.slice(5, 6)).substring(0, 10) + ' at: ' + String(game.slice(5, 6)).substring(11, 20)}
         <br></br>
 
       </div>
@@ -57,7 +58,7 @@ export default function GameStats() {
 
       <button className='stats-button' onClick={getGamesData}> get stats </button>
       <ul className="stats-list">
-        {sessionItems}
+        {gameItems}
       </ul>
     </Fragment>
   );

@@ -18,8 +18,6 @@ export default function SaveGame() {
 
   }
 
-  // i had to create this extra component to save the game conditionally, because the useSave hook could only be used conditionally if it was wrapped in a component
-
   return (
     <Fragment>{useSave()}</Fragment>
   )
