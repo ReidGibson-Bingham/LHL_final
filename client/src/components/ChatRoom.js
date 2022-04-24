@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import { gameContext } from "../providers/GameProvider";
 
 import "../styles/TypingText.scss";
-// import ProgressBar from "./ProgressBar";
+import ProgressBar from "./ProgressBar";
 
 export default function ChatRoom() {
   const { errorCount, percentDone } = useContext(gameContext);
@@ -46,7 +46,7 @@ export default function ChatRoom() {
     });
 
     socket.on("public", (msg) => {
-      setMessages((prev) => ["Broadcast: " + msg.text, ...prev]);
+      setMessages((prev) => [`${msg.from} says:` + msg.text, ...prev]);
     });
 
     socket.on("private", (msg) => {
@@ -111,7 +111,7 @@ export default function ChatRoom() {
   //--------------------progress bar----------
   const containerStyles = {
     height: 20,
-    width: "100%",
+    width: 800,
     backgroundColor: "#e0e0de",
     borderRadius: 50,
     margin: 50,
@@ -120,14 +120,14 @@ export default function ChatRoom() {
   const fillerStyles = {
     height: "100%",
     width: `${compStatus[1]}%`,
-    backgroundColor: "#6a1b9a",
+    backgroundColor: "#ff8e50",
     borderRadius: "inherit",
     textAlign: "right",
   };
 
   const labelStyles = {
     padding: 5,
-    color: "white",
+    color: "#1b8b9a",
     fontWeight: "bold",
   };
 
@@ -135,12 +135,12 @@ export default function ChatRoom() {
 
   return (
     <div className="TextShow">
-      <h1>Errorcount: {compStatus[0]}</h1>
-      <h1>PercentDone: {compStatus[1]}</h1>
-      {/* <ProgressBar PercentDone={compStatus[1]} /> */}
+      {/* <h3>Errorcount: {compStatus[0]}</h3>
+      <h3>PercentDone: {Math.round(compStatus[1])}</h3> */}
+      <ProgressBar />
       <div style={containerStyles}>
         <div style={fillerStyles}>
-          <span style={labelStyles}>{compStatus[1]}</span>
+          <span style={labelStyles}>Opponent:{Math.round(compStatus[1])}</span>
         </div>
       </div>
       <h4>
