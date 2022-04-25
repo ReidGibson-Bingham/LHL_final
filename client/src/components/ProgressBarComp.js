@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export default function ProgressBar() {
-  const [compStatus, setCompStatus] = useState([]);
-  console.log("coponent bar", compStatus);
+export default function ProgressBarComp(props) {
+  const { compStatus } = props;
+  // console.log("coponent bar", compStatus);
   const containerStyles = {
     height: 20,
     width: 800,
@@ -28,7 +28,7 @@ export default function ProgressBar() {
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
-        <span style={labelStyles}>Opponent:{Math.round(compStatus[1])}</span>
+        <span style={labelStyles}>Opponent:{Math.floor(compStatus[1])}</span>
       </div>
     </div>
   );

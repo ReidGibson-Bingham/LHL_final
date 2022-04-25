@@ -5,7 +5,7 @@ import { gameContext } from "../providers/GameProvider";
 
 import "../styles/TypingText.scss";
 import ProgressBar from "./ProgressBar";
-import ProgressBarCoponent from "./ProgressBarCoponent";
+import ProgressBarComp from "./ProgressBarComp";
 
 export default function ChatRoom() {
   const { errorCount, percentDone, user } = useContext(gameContext);
@@ -106,39 +106,10 @@ export default function ChatRoom() {
     return <li key={i}>{msg}</li>;
   });
 
-  //--------------------progress bar----------
-  const containerStyles = {
-    height: 20,
-    width: 800,
-    backgroundColor: "#e0e0de",
-    borderRadius: 50,
-    margin: 50,
-  };
-
-  const fillerStyles = {
-    height: "100%",
-    width: `${compStatus[1]}%`,
-    backgroundColor: "#ff8e50",
-    borderRadius: "inherit",
-    textAlign: "right",
-  };
-
-  const labelStyles = {
-    padding: 5,
-    color: "#1b8b9a",
-    fontWeight: "bold",
-  };
-
-  //------------------------
-
   return (
     <div className="chatRoom-container">
       <ProgressBar />
-      <div style={containerStyles}>
-        <div style={fillerStyles}>
-          <span style={labelStyles}>Opponent:{Math.round(compStatus[1])}</span>
-        </div>
-      </div>
+      <ProgressBarComp compStatus={compStatus} />
       <h4>
         <div>
           <span>{status.connected}</span> clients connected
@@ -146,7 +117,7 @@ export default function ChatRoom() {
         <div>
           <span>{status.active}</span> clients active
         </div>
-        <div className="notify">broadcast: {notify}</div>
+        {/* <div className="notify">broadcast: {notify}</div> */}
       </h4>
 
       <div>
