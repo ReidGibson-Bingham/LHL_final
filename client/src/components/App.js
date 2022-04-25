@@ -26,7 +26,7 @@ export default function App() {
   return (
     <main className="layout">
       {!user.name && <TopNavLogin />} {user.name && <TopNavLogout />}
-      <section className="typing-text">
+      <section className="">
         <div className="row">
           <div className="col-sm-8">
             <GameMode />
@@ -37,16 +37,13 @@ export default function App() {
           <div className="row"></div>
         </div>
         <div className="row">
+          <div className="App col-sm-3">{user.name && <GameStats />}</div>
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
           </div>
           <div className="App col-sm-3">
             {user.name && competitiveMode && <ChatRoom />}
           </div>
-        </div>
-
-        <div className="App col-sm-3">
-          <GameStats />
         </div>
       </section>
     </main>

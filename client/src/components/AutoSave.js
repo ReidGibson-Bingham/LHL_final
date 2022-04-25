@@ -2,7 +2,7 @@ import React, {Fragment, useState, useContext, useEffect} from "react";
 
 import { gameContext } from "../providers/GameProvider";
 
-export default function SaveGame() {
+export default function AutoSave() {
 
   const {
     saveGameData
