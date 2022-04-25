@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useContext, useEffect} from "react";
 import axios from "axios";
-import SaveGame from "./SaveGame";
+import AutoSave from "./AutoSave";
 
 //import "./styles.css";
 import "../styles/GameStats.scss";
@@ -56,7 +56,7 @@ export default function GameStats() {
       
       {console.log("gameStatus: ",gameStatus)}
       <div className="GameStatus">
-        {gameStatus === "done" && <SaveGame /> }
+        {gameStatus === "done" && <AutoSave/> }
       </div>
 
       <button className='stats-button' onClick={getGamesData}> get stats </button>
