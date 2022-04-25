@@ -18,7 +18,7 @@ export default function ChatRoom() {
   const [text, setText] = useState("");
   const [to, setTo] = useState("");
   const [playerStatus, setPlayerStatus] = useState([]);
-  const [compStatus, setCompStatus] = useState([]);
+  const [compStatus, setCompStatus] = useState([0]);
 
   const clear = function () {
     setMessages([]);
@@ -111,22 +111,26 @@ export default function ChatRoom() {
       <ProgressBar />
       <ProgressBarComp compStatus={compStatus} />
       <h4>
-        <div>
+        {/* <div>
           <span>{status.connected}</span> clients connected
         </div>
         <div>
           <span>{status.active}</span> clients active
-        </div>
+        </div> */}
         {/* <div className="notify">broadcast: {notify}</div> */}
       </h4>
 
       <div>
-        <input onChange={onNameChange} value={user.name} placeholder="Name" />
+        {/* <input onChange={onNameChange} value={user.name} /> */}
+        {/* <label>{user.name}</label> */}
       </div>
-      <button onClick={connect}>connect</button>
-      <button onClick={disconnect}>disconnect</button>
+      <button onClick={connect}>Click to Compete</button>
+      {/* <button onClick={disconnect}>disconnect</button> */}
       <div>
-        <input onChange={onToChange} value={to} placeholder="To" />
+        {/* <input onChange={onToChange} value={to} placeholder="To" /> */}
+        <h3>
+          {user.name} VS {to}
+        </h3>
       </div>
       <div>
         <textarea
