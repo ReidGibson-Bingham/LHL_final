@@ -6,11 +6,10 @@ export default function ProgressBar() {
   let percDone = Math.floor(percentDone);
   const containerStyles = {
     height: 20,
-    width: 800,
+    width: 400,
     backgroundColor: "#e0e0de",
     borderRadius: 50,
     margin: 50,
-    
   };
 
   const fillerStyles = {

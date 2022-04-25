@@ -5,7 +5,7 @@ export default function ProgressBarComp(props) {
   // console.log("coponent bar", compStatus);
   const containerStyles = {
     height: 20,
-    width: 800,
+    width: 400,
     backgroundColor: "#e0e0de",
     borderRadius: 50,
     margin: 50,
@@ -13,7 +13,7 @@ export default function ProgressBarComp(props) {
 
   const fillerStyles = {
     height: "100%",
-    width: `${compStatus[1]}%`,
+    width: `${compStatus[1] ? compStatus[1] : 0}%`,
     backgroundColor: "#ff8e50",
     borderRadius: "inherit",
     textAlign: "right",
@@ -28,7 +28,9 @@ export default function ProgressBarComp(props) {
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
-        <span style={labelStyles}>Opponent:{Math.floor(compStatus[1])}</span>
+        <span style={labelStyles}>
+          Opponent:{Math.floor(compStatus[1] ? compStatus[1] : 0)}
+        </span>
       </div>
     </div>
   );
