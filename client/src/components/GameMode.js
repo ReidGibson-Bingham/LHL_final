@@ -14,20 +14,27 @@ export default function GameMode() {
     setCompetitiveMode
   } = useContext(gameContext);
 
-  const compStatusButton = function () {
+  const compStatusTrue = function () {
     setCompetitiveMode(true);
+    fetchData(3);
   };
+
+  // this function sets both the difficulty and sets competitive mode to false
+  const compositeFunction = function (index) {
+    setCompetitiveMode(false);
+    fetchData(index);
+  }
 
   return (
     <Fragment>
       <div className="dropdown">
         <p className="difficulty-dropbtn">Difficulty</p>
         <div className="dropdown-content">
-          <Button variant="outline-success" onClick={() => fetchData(0)}>Child</Button> {' '}
-          <Button variant="outline-primary" onClick={() => fetchData(1)}>Easy</Button> {' '}
-          <Button variant="outline-warning" onClick={() => fetchData(2)}>Medium</Button> {' '}
-          <Button variant="outline-danger"onClick={() => fetchData(3)}>Hard</Button> {' '}
-          <Button variant="outline-dark" onClick={compStatusButton}>
+          <Button variant="outline-success" onClick={() => compositeFunction(0)}>Child</Button> {' '}
+          <Button variant="outline-primary" onClick={() => compositeFunction(1)}>Easy</Button> {' '}
+          <Button variant="outline-warning" onClick={() => compositeFunction(2)}>Medium</Button> {' '}
+          <Button variant="outline-danger"onClick={() => compositeFunction(3)}>Hard</Button> {' '}
+          <Button variant="outline-dark" onClick={compStatusTrue}>
             Competitive Mode
           </Button>  
         </div>

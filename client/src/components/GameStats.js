@@ -30,17 +30,22 @@ export default function GameStats() {
     game = Object.values(game);
     
     return (
-      <div key={game[0]}>
-      
-        Error Count: {game.slice(2, 3)} 
-        <br></br> 
-        Time (seconds): {(game.slice(3, 4) / 1000)}
+      <Fragment>
         <br></br>
-        Created on: {String(game.slice(5, 6)).substring(0, 10) + ' at: ' + String(game.slice(5, 6)).substring(11, 20)}
-        <br></br>
+        <h4 key= {Math.random()}>Game #: {game.slice(0, 1)} </h4>
+        <div key={game[0]}>
+        
+          Error Count: {game.slice(2, 3)} 
+          <br></br> 
+          Time (seconds): {(game.slice(3, 4) / 1000)}
+          <br></br>
+          Created on: {String(game.slice(5, 6)).substring(0, 10) + ' at: ' + String(game.slice(5, 6)).substring(11, 20)}
+          <br></br>
 
-      </div>
+        </div>
+      </Fragment>
     )
+    
       
   })
 
@@ -51,13 +56,13 @@ export default function GameStats() {
       
       {console.log("gameStatus: ",gameStatus)}
       <div className="GameStatus">
-        {gameStatus === "done" && <SaveGame />}
+        {gameStatus === "done" && <SaveGame /> }
       </div>
 
       <button className='stats-button' onClick={getGamesData}> get stats </button>
       
       <ul className="stats-list">
-        <h4>Stats: </h4>
+        
         {gameItems[gameItems.length-2]}
         {gameItems[gameItems.length-1]}
       </ul>
