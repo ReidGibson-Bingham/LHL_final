@@ -61,7 +61,6 @@ export default function TypingText(props) {
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
       event.target.disabled = true;
-      
     }
 
     keyboard.current.setInput(input);
@@ -69,7 +68,7 @@ export default function TypingText(props) {
 
     let textTyped = input[index];
     setPercentDone((input.length / typingText.length) * 100);
-    console.log("percent done", percentDone);
+    // console.log("percent done", percentDone);
 
     if (letter === textTyped) {
     } else {
@@ -98,7 +97,7 @@ export default function TypingText(props) {
   }
 
   return (
-    <div className="TextShow">
+    <div>
       <div className="GameStatus">
         {gameStatus === "started"
           ? "Game In Progress..."

@@ -24,7 +24,6 @@ export default function GameScore() {
   } = useContext(gameContext);
 
   useEffect(() => {
-    console.log("GameScore gameStatus: ", gameStatus);
     if (gameStatus === "started") {
       setRunning(true);
       console.log("** time:", time);
@@ -36,16 +35,14 @@ export default function GameScore() {
     if (gameStatus === "new") {
       setTime(0);
     }
-    console.log("GameScore time: ", time);
   }, [gameStatus]);
 
   useEffect(() => {
     let interval;
     if (running) {
       interval = setInterval(() => {
-        console.log("testing: ", time);
         setTime((prevTime) => prevTime + 10);
-        setGameTotalTime((prevTime) => prevTime + 10)
+        setGameTotalTime((prevTime) => prevTime + 10);
       }, 10);
     } else if (!running) {
       clearInterval(interval);

@@ -17,13 +17,12 @@ import TopNavLogout from "../navigation/TopNavLogout";
 
 import ChatRoom from "./ChatRoom";
 
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 export default function App() {
+  const { user, setUser, competitiveMode, setCompetitiveMode } =
+    useContext(gameContext);
 
-  const { user, setUser, competitiveMode, setCompetitiveMode } = useContext(gameContext);
-
-  console.log("Apps user: ", user);
   return (
     <main className="layout">
       {!user.name && <TopNavLogin />} {user.name && <TopNavLogout />}
@@ -35,27 +34,21 @@ export default function App() {
           <div className="col-sm-4">
             <GameScore />
           </div>
-          <div className="row">
-            
-          </div>
+          <div className="row"></div>
         </div>
         <div className="row">
-          
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
           </div>
           <div className="App col-sm-3">
             {user.name && competitiveMode && <ChatRoom />}
           </div>
-
         </div>
 
         <div className="App col-sm-3">
-            <GameStats /> 
+          <GameStats />
         </div>
-
       </section>
-      
     </main>
   );
 }

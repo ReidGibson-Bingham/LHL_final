@@ -5,9 +5,10 @@ import { gameContext } from "../providers/GameProvider";
 
 import "../styles/TypingText.scss";
 import ProgressBar from "./ProgressBar";
+import ProgressBarCoponent from "./ProgressBarCoponent";
 
 export default function ChatRoom() {
-  const { errorCount, percentDone } = useContext(gameContext);
+  const { errorCount, percentDone, user } = useContext(gameContext);
 
   const [socket, setSocket] = useState("");
   const [name, setName] = useState("");
@@ -16,15 +17,12 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [to, setTo] = useState("");
-  // const [error, setError] = useState("");
-  ////////////////////////////////
   const [playerStatus, setPlayerStatus] = useState([]);
   const [compStatus, setCompStatus] = useState([]);
 
   const clear = function () {
     setMessages([]);
   };
-  
 
   // This app makes a websocket connection immediately
   useEffect(() => {
@@ -34,7 +32,7 @@ export default function ChatRoom() {
 
     // All This stuff should be a Custom Hook, right?
     socket.on("connect", (event) => {
-      console.log("connected");
+      // console.log("connected");
     });
 
     socket.on("notify", (msg) => {
@@ -61,8 +59,8 @@ export default function ChatRoom() {
 
     socket.on("autoConnect", (name) => {
       setTo(name);
-      console.log("&& to:", name)
-    })
+      console.log("&& to:", name);
+    });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
@@ -85,7 +83,7 @@ export default function ChatRoom() {
 
   const connect = function () {
     console.log("register", name);
-    socket && name && socket.emit("register", name);
+    socket && user.name && socket.emit("register", user.name);
   };
 
   const disconnect = function () {
@@ -97,7 +95,7 @@ export default function ChatRoom() {
     socket && text && socket.emit("chat", { text, to });
   };
 
-  const sendPlayerStatus = function () {
+  const sendPlayerStatus = function (props) {
     socket &&
       errorCount &&
       percentDone &&
@@ -134,9 +132,7 @@ export default function ChatRoom() {
   //------------------------
 
   return (
-    <div className="TextShow">
-      {/* <h3>Errorcount: {compStatus[0]}</h3>
-      <h3>PercentDone: {Math.round(compStatus[1])}</h3> */}
+    <div className="chatRoom-container">
       <ProgressBar />
       <div style={containerStyles}>
         <div style={fillerStyles}>
@@ -154,7 +150,7 @@ export default function ChatRoom() {
       </h4>
 
       <div>
-        <input onChange={onNameChange} value={name} placeholder="Name" />
+        <input onChange={onNameChange} value={user.name} placeholder="Name" />
       </div>
       <button onClick={connect}>connect</button>
       <button onClick={disconnect}>disconnect</button>

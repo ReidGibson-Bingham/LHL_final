@@ -1,22 +1,20 @@
-import { useEffect, useState, useContext } from "react";
-import { gameContext } from "../providers/GameProvider";
+import { useState } from "react";
 
 export default function ProgressBar() {
-  const { percentDone } = useContext(gameContext);
-  let percDone = Math.floor(percentDone);
+  const [compStatus, setCompStatus] = useState([]);
+  console.log("coponent bar", compStatus);
   const containerStyles = {
     height: 20,
     width: 800,
     backgroundColor: "#e0e0de",
     borderRadius: 50,
     margin: 50,
-    
   };
 
   const fillerStyles = {
     height: "100%",
-    width: `${percentDone}%`,
-    backgroundColor: "#81D8D0",
+    width: `${compStatus[1]}%`,
+    backgroundColor: "#ff8e50",
     borderRadius: "inherit",
     textAlign: "right",
   };
@@ -30,7 +28,7 @@ export default function ProgressBar() {
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
-        <span style={labelStyles}>{`You:${percDone}`}</span>
+        <span style={labelStyles}>Opponent:{Math.round(compStatus[1])}</span>
       </div>
     </div>
   );

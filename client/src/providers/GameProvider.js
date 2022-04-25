@@ -111,10 +111,7 @@ export default function GameProvider(props) {
     getGamesData,
     gamesData,
     setGamesData,
-    // setSessionData,
-    // sessionData,
-    // setSessionsData,
-    // sessionsData,
+   
     user,
     setUser,
     percentDone,
