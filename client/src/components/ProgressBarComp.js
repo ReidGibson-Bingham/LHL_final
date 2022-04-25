@@ -28,7 +28,9 @@ export default function ProgressBarComp(props) {
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
-        <span style={labelStyles}>Opponent:{Math.floor(compStatus[1])}</span>
+        <span style={labelStyles}>
+          Opponent:{Math.floor(compStatus[1])}
+        </span>
       </div>
     </div>
   );
