@@ -107,9 +107,9 @@ export default function ChatRoom() {
   });
 
   return (
-    <container className="chatroom-container">
+    <container className="chatroom-container component-border">
       <h4>Competitive Duel</h4>
-      <div className="">
+      <div>
         <ProgressBar />
         <ProgressBarComp compStatus={compStatus} />
       </div>
@@ -127,29 +127,34 @@ export default function ChatRoom() {
         {/* <input onChange={onNameChange} value={user.name} /> */}
         {/* <label>{user.name}</label> */}
       </div>
-      <Button variant="outline-dark" onClick={connect}>
-        Click to Compete{" "}
-      </Button>
-      {/* <button onClick={disconnect}>disconnect</button> */}
-      <div>
-        {/* <input onChange={onToChange} value={to} placeholder="To" /> */}
-        <h4>
-          {user.name} vs {to}
-        </h4>
-      </div>
-      <div>
-        <textarea
-          onChange={onTextChange}
-          placeholder="Type a message"
-        ></textarea>
-      </div>
+      <div className="inner-component-border">
+        <Button variant="outline-dark" onClick={connect}>
+          Click to Compete{" "}
+        </Button>
+        {/* <button onClick={disconnect}>disconnect</button> */}
+        <div>
+          {/* <input onChange={onToChange} value={to} placeholder="To" /> */}
+          <h4>
+            {user.name} vs {to}
+          </h4>
+        </div>
+        <div>
+          <textarea
+            className="chat-input-text"
+            onChange={onTextChange}
+            placeholder="Type a message"
+          ></textarea>
+        </div>
 
-      <Button variant="outline-primary" onClick={send}>
-        Send
-      </Button>
+        <Button variant="outline-primary" onClick={send}>
+          Send
+        </Button>
+      </div>
       {/* <button onClick={sendPlayerStatus}>Send Player Status</button> */}
       {/* <button onClick={clear}>Clear</button> */}
-      <ul>{list}</ul>
+      <div className="chat-texts inner-component-border">
+        <ul>{list}</ul>
+      </div>
     </container>
   );
 }

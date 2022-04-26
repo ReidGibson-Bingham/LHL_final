@@ -37,13 +37,17 @@ export default function App() {
       {!user.name && <TopNavLogin />} {user.name && <TopNavLogout />}
       <section className="">
         <div className="row">
-          <div className="col-sm-8">
+          <div className="col-sm-6">
             <GameMode />
           </div>
+          <div className="col-sm-1"></div>
           <div className="col-sm-4">
             <GameScore />
           </div>
-          <div className="row"></div>
+          <div className="col-sm-1"></div>
+          <div className="row">
+            <div className="col-sm-1">&nbsp;</div>
+          </div>
         </div>
         <div className="row">
           <div className="App col-sm-3 justify-content-start">

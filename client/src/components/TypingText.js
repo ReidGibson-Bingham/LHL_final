@@ -115,7 +115,7 @@ export default function TypingText(props) {
   }
 
   return (
-    <container className="typing-text-container">
+    <container className="typing-text-container component-border">
       <div className="game-status">
         {gameStatus === "started"
           ? "Game In Progress..."
@@ -125,7 +125,7 @@ export default function TypingText(props) {
           ? "Game Ready!"
           : "Select game difficulty."}
       </div>
-      <div className="text-to-type" id="text-showed">
+      <div className="text-to-type inner-component-border" id="text-showed">
         {typingText.map((letter, i) => (
           <span key={i} className={check(letter, i)}>
             {letter}

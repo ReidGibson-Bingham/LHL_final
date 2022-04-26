@@ -26,7 +26,7 @@ export default function GameStats() {
     game = Object.values(game);
 
     return (
-      <div className="game-stats" key={game[0]}>
+      <div className="game-stats inner-component-border" key={game[0]}>
         <div key={Math.random()}>Game #: {game.slice(0, 1)} </div>
         <div key={game[0]}>
           Error Count: {game.slice(2, 3)}
@@ -44,13 +44,12 @@ export default function GameStats() {
   });
 
   return (
-    <container className="justify-content-start stats-list">
+    <container className="justify-content-start stats-list component-border">
       <div className="game-stats">
         <h4>Game Stats </h4>
         {gameItems[gameItems.length - 2]}
-        ----
+
         {gameItems[gameItems.length - 1]}
-        ----
       </div>
     </container>
   );

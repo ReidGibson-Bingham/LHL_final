@@ -60,12 +60,11 @@ export default function GameMode() {
           <Button variant="outline-dark" onClick={compStatusTrue}>
             Competitive Mode
           </Button>
-          <div>
-            <Button variant="outline-secondary" onClick={newGameStatus}>
-              {" "}
-              New Game{" "}
-            </Button>
-          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <Button variant="outline-secondary" onClick={newGameStatus}>
+            {" "}
+            New Game{" "}
+          </Button>
         </div>
       </div>
     </Fragment>
