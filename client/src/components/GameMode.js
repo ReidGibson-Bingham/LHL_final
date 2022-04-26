@@ -13,7 +13,8 @@ export default function GameMode() {
     competitiveMode,
     setCompetitiveMode, 
     gameStatus, 
-    setGameStatus
+    setGameStatus,
+    setNewStats
   } = useContext(gameContext);
 
   const compStatusTrue = function () {
@@ -25,12 +26,14 @@ export default function GameMode() {
   const compositeFunction = function (index) {
     setCompetitiveMode(false);
     fetchData(index);
+    
   }
 
   const newGameStatus = function () {
     setGameStatus("new");
     console.log("new game button clicked");
-    document.getElementById("keyboard-input").value = "";
+    document.getElementById("keyboard-input").value = null;
+
   }
 
   
@@ -47,8 +50,8 @@ export default function GameMode() {
             Competitive Mode
           </Button>  
           <div>
-          <Button variant="outline-secondary" onClick={newGameStatus}> New Game </Button>
-        </div>
+            <Button variant="outline-secondary" onClick={newGameStatus}> New Game </Button>
+          </div>
         </div>
       </div>
     </Fragment>

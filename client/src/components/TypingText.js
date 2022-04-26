@@ -79,16 +79,14 @@ export default function TypingText(props) {
 
     if (gameStatus === "new") {
       // event.target.disabled = false;
-      document.getElementById("keyboard-input").value="";
+      document.getElementById("keyboard-input").value=null;
+      // setInput("");
       // setInput('');
       console.log("condition met");
     }
 
     // check();
   };
-
-
-  
 
   //--------------------------------
 

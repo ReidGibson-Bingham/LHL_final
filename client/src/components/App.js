@@ -29,8 +29,9 @@ export default function App() {
     competitiveMode,
     setCompetitiveMode,
     setGameStatus,
-    gameStatus } =
-    useContext(gameContext);
+    gameStatus, 
+    newStats
+   } = useContext(gameContext);
 
   return (
     <main className="layout">
@@ -46,7 +47,7 @@ export default function App() {
           <div className="row"></div>
         </div>
         <div className="row">
-          <div className="App col-sm-3">{user.name && <GameStats />}</div>
+          <div className="App col-sm-3">{user.name && <GameStats />}</div> 
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
             

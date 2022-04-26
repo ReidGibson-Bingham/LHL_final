@@ -34,8 +34,7 @@ export default function GameStats() {
     return (
 
       <div key={game[0]}>
-        Error Count: {game.slice(2, 3)}
-        <br></br>
+
         <h4 key= {Math.random()}>Game #: {game.slice(0, 1)} </h4>
         <div key={game[0]}>
         
