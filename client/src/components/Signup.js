@@ -102,8 +102,8 @@ export default function Signup() {
   };
   //if (user === {}) {
   return (
-    <div className="form-container">
-      <h3>User Registration</h3>
+    <div className="form-container component-border">
+      <h4>User Registration</h4>
 
       {/* Calling to the methods */}
       <span className="messages">

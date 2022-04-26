@@ -56,11 +56,11 @@ export default function TypingText(props) {
     const index = input.length - 1;
     if (input.length === 1) {
       setGameStatus("started");
-      // event.target.disabled = false;
+      event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
     } else if (index >= typingText.length) {
-      // event.target.disabled = true;
+      event.target.disabled = true;
     }
 
     keyboard.current.setInput(input);
@@ -75,12 +75,12 @@ export default function TypingText(props) {
       setErrorCount(errorCount + 1);
     }
 
-    if (gameStatus === "new") {
-      // event.target.disabled = false;
-      document.getElementById("keyboard-input").value = "";
-      // setInput('');
-      console.log("condition met");
-    }
+    // if (gameStatus === "new") {
+    //   // event.target.disabled = false;
+    //   document.getElementById("keyboard-input").value = "";
+    //   // setInput('');
+    //   console.log("condition met");
+    // }
 
     // check();
   };
@@ -106,9 +106,13 @@ export default function TypingText(props) {
   }
 
   /////////////////////////////////
-  if (gameStatus === "new") {
-    setErrorCount(0);
-  }
+  useEffect(() => {
+    if (gameStatus === "new") {
+      setErrorCount(0);
+      document.getElementById("keyboard-input").disabled = false;
+      setInput("");
+    }
+  }, [gameStatus]);
 
   return (
     <container className="typing-text-container component-border">

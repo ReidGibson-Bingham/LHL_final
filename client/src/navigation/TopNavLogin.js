@@ -117,6 +117,7 @@ const TopNavLogin = () => {
                   &nbsp;
                   <Button
                     variant="outline-primary"
+                    size="sm"
                     onClick={handleSubmit}
                     className="dropdown-content test"
                     type="submit"

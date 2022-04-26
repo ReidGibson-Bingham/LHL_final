@@ -28,8 +28,6 @@ export default function GameMode() {
 
   const newGameStatus = function () {
     setGameStatus("new");
-    console.log("new game button clicked");
-    document.getElementById("keyboard-input").value = "";
   };
 
   return (
