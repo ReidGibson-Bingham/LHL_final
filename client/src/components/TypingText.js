@@ -75,15 +75,20 @@ export default function TypingText(props) {
       setErrorCount(errorCount + 1);
     }
 
-    if (gameStatus === "new") {
-      // event.target.disabled = false;
-      document.getElementById("keyboard-input").value = "";
-      // setInput('');
-      console.log("condition met");
-    }
-
     // check();
   };
+
+  if (gameStatus === "new") {
+    // event.target.disabled = false;
+    // document.getElementById("keyboard-input").value = "";
+    console.log("&&input:", input);
+    console.log("input", typeof input);
+    console.log("input as an array:", input.split(''))
+    const tempInput = input.split('')
+    console.log("temp input[0]: ", tempInput[0])
+    // setInput('');
+    console.log("condition met");
+  }
 
   //--------------------------------
 
@@ -94,21 +99,23 @@ export default function TypingText(props) {
   function check(letter, index) {
     const textTyped = input[index];
 
-    if (letter === textTyped) {
-      return "has-background-success";
-    } else if (!textTyped) {
-      return "background-color";
-    }
-
+    // this one needs to go first to reset all the text to yellow
     ////////////////////////////////
     if (gameStatus === "new") {
       return "background-color";
     }
     ////////////////////////////////
 
+    if (letter === textTyped) {
+      return "has-background-success";
+    } else if (!textTyped) {
+      return "background-color";
+    }
+
     return "has-background-wrong";
   }
 
+  // setting the error count to zero on new game
   /////////////////////////////////
   if (gameStatus === "new") {
     setErrorCount(0);
