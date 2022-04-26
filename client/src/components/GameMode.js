@@ -11,7 +11,9 @@ export default function GameMode() {
     setTextDifficulty, 
     fetchData, 
     competitiveMode,
-    setCompetitiveMode
+    setCompetitiveMode, 
+    gameStatus, 
+    setGameStatus
   } = useContext(gameContext);
 
   const compStatusTrue = function () {
@@ -25,6 +27,13 @@ export default function GameMode() {
     fetchData(index);
   }
 
+  const newGameStatus = function () {
+    setGameStatus("new");
+    console.log("new game button clicked")
+    // () => Document.getElementById("keyboard-input").value="";
+  }
+
+  
   return (
     <Fragment>
       <div className="dropdown">
@@ -37,6 +46,9 @@ export default function GameMode() {
           <Button variant="outline-dark" onClick={compStatusTrue}>
             Competitive Mode
           </Button>  
+          <div>
+          <Button onClick={newGameStatus}> New Game </Button>
+        </div>
         </div>
       </div>
     </Fragment>

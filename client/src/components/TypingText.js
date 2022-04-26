@@ -60,8 +60,8 @@ export default function TypingText(props) {
       event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
-      event.target.disabled = true;
-      
+      // event.target.disabled = true;
+      event.target.disabled = false;
     }
 
     keyboard.current.setInput(input);
@@ -76,8 +76,17 @@ export default function TypingText(props) {
       setErrorCount(errorCount + 1);
     }
 
+    if (gameStatus === "new") {
+      Document.getElementById("keyboard-input").value="";
+      // setInput('');
+      console.log("condition met");
+    }
+
     // check();
   };
+
+
+  
 
   //--------------------------------
 
@@ -94,8 +103,20 @@ export default function TypingText(props) {
       return "background-color";
     }
 
+    ////////////////////////////////
+    if (gameStatus === "new") {
+      return "background-color";
+    }
+    ////////////////////////////////
+
     return "has-background-wrong";
   }
+
+  /////////////////////////////////
+  if (gameStatus === "new") {
+    setErrorCount(0)
+  }
+  
 
   return (
     <div className="TextShow">

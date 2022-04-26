@@ -25,7 +25,13 @@ import AutoSave from "./AutoSave";
 import Button from "react-bootstrap/Button";
 
 export default function App() {
-  const { user, setUser, competitiveMode, setCompetitiveMode, gameStatus } =
+  const {
+    user,
+    setUser,
+    competitiveMode,
+    setCompetitiveMode,
+    setGameStatus,
+    gameStatus } =
     useContext(gameContext);
 
   console.log("Apps user: ", user);
@@ -46,11 +52,14 @@ export default function App() {
           <div className="App col-sm-3">{user.name && <GameStats />}</div>
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
+            
           </div>
           <div className="App col-sm-3">
             {user.name && competitiveMode && <ChatRoom />}
           </div>
+          
         </div>
+        
       </section>
       <div className="GameStatus">
         {gameStatus === "done" && <AutoSave/> }

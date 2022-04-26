@@ -49,24 +49,19 @@ export default function GameStats() {
       
   })
 
-  
-
   return (
+
     <Fragment>
-      
-      {console.log("gameStatus: ",gameStatus)}
-      {/* <div className="GameStatus">
-        {gameStatus === "done" && <AutoSave/> }
-      </div> */}
 
       <button className='stats-button' onClick={getGamesData}> get stats </button>
       
       <ul className="stats-list">
-        
         {gameItems[gameItems.length-2]}
         {gameItems[gameItems.length-1]}
       </ul>
+
     </Fragment>
+    
   );
   
 }
