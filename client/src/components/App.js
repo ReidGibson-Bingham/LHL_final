@@ -16,12 +16,6 @@ import GameStats from "./GameStats";
 
 import GameScore from "./GameScore";
 
-import Signup from "./Signup";
-
-import TopNavLogin from "../navigation/TopNavLogin";
-
-import TopNavLogout from "../navigation/TopNavLogout";
-
 import ChatRoom from "./ChatRoom";
 
 import AutoSave from "./AutoSave";

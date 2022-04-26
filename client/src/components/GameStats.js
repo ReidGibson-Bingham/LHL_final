@@ -18,10 +18,17 @@ export default function GameStats() {
     setGamesData,
   } = useContext(gameContext);
 
-  console.log("00 games data:", gamesData[0]);
+  useEffect (() => {
+      
+    getGamesData()
+
+  }, [])
+  
+  // console.log("00 games data:", gamesData[0]);
 
   // only display current users
   const gameItems = gamesData.map((game) => {
+    
     game = Object.values(game);
 
     return (
@@ -51,7 +58,7 @@ export default function GameStats() {
 
     <Fragment>
 
-      <button className='stats-button' onClick={getGamesData}> get stats </button>
+      {/* <button className='stats-button' onClick={getGamesData}> get stats </button> */}
       
       <ul className="stats-list">
         {gameItems[gameItems.length-2]}
