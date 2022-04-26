@@ -18,14 +18,10 @@ export default function GameStats() {
 
   useEffect(() => {
     getGamesData();
-  }, []);
-
-  // console.log("00 games data:", gamesData[0]);
+  }, [gameStatus]);
 
   // only display current users
   const userGameItems = gamesData.filter((item) => item.user_id == user.id);
-
-  console.log("userGameItems", userGameItems, user.id);
 
   const gameItems = userGameItems.map((game) => {
     game = Object.values(game);

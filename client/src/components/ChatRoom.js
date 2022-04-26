@@ -8,7 +8,15 @@ import ProgressBar from "./ProgressBar";
 import ProgressBarComp from "./ProgressBarComp";
 
 export default function ChatRoom() {
-  const { errorCount, percentDone, user } = useContext(gameContext);
+  const {
+    errorCount,
+    percentDone,
+    setPercentDone,
+    user,
+    gameStatus,
+    setErrorCount,
+    setInput,
+  } = useContext(gameContext);
 
   const [socket, setSocket] = useState("");
   const [name, setName] = useState("");
@@ -101,7 +109,12 @@ export default function ChatRoom() {
       percentDone &&
       socket.emit("playerStatus", { errorCount, percentDone, to });
   };
-
+  useEffect(() => {
+    if (gameStatus === "new") {
+      setPercentDone(0);
+      setCompStatus(0);
+    }
+  }, [gameStatus]);
   const list = messages.map((msg, i) => {
     return <li key={i}>{msg}</li>;
   });
