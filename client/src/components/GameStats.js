@@ -15,7 +15,11 @@ export default function GameStats() {
     setGamesData,
   } = useContext(gameContext);
 
-  console.log("00 games data:", gamesData[0]);
+  useEffect(() => {
+    getGamesData();
+  }, []);
+
+  // console.log("00 games data:", gamesData[0]);
 
   // only display current users
   const gameItems = gamesData.map((game) => {
@@ -25,13 +29,18 @@ export default function GameStats() {
       <div className="game-stats" key={game[0]}>
         Error Count: {game.slice(2, 3)}
         <br></br>
-        Time (seconds): {game.slice(3, 4) / 1000}
-        <br></br>
-        Created on:{" "}
-        {String(game.slice(5, 6)).substring(0, 10) +
-          " at: " +
-          String(game.slice(5, 6)).substring(11, 20)}
-        <br></br>
+        <h4 key={Math.random()}>Game #: {game.slice(0, 1)} </h4>
+        <div key={game[0]}>
+          Error Count: {game.slice(2, 3)}
+          <br></br>
+          Time (seconds): {game.slice(3, 4) / 1000}
+          <br></br>
+          Created on:{" "}
+          {String(game.slice(5, 6)).substring(0, 10) +
+            " at: " +
+            String(game.slice(5, 6)).substring(11, 20)}
+          <br></br>
+        </div>
       </div>
     );
   });

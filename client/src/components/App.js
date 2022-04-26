@@ -1,6 +1,7 @@
 import "../styles/App.scss";
 
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+
 import { gameContext } from "../providers/GameProvider";
 
 import Signup from "./Signup";
@@ -19,8 +20,16 @@ import ChatRoom from "./ChatRoom";
 
 import AutoSave from "./AutoSave";
 
+import Button from "react-bootstrap/Button";
+
 export default function App() {
-  const { user, setUser, competitiveMode, setCompetitiveMode, gameStatus } =
+  const {
+    user,
+    setUser,
+    competitiveMode,
+    setCompetitiveMode,
+    setGameStatus,
+    gameStatus } =
     useContext(gameContext);
 
   return (
@@ -42,13 +51,18 @@ export default function App() {
           </div>
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
+            
           </div>
           <div className="App col-sm-3">
             {user.name && competitiveMode && <ChatRoom />}
           </div>
+          
         </div>
-        <div className="">{gameStatus === "done" && <AutoSave />}</div>
+        
       </section>
+      <div className="GameStatus">
+        {gameStatus === "done" && <AutoSave/> }
+      </div>
     </main>
   );
 }

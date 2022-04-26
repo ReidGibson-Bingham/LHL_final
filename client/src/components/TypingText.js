@@ -47,7 +47,7 @@ export default function TypingText(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
-
+    // event.target.disabled = false;
     setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
@@ -58,10 +58,12 @@ export default function TypingText(props) {
     const index = input.length - 1;
     if (input.length === 1) {
       setGameStatus("started");
-      event.target.disabled = false;
+      // event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
-      event.target.disabled = true;
+      
+    } else if (index >= typingText.length) {
+      // event.target.disabled = true;
     }
 
     keyboard.current.setInput(input);
@@ -76,8 +78,18 @@ export default function TypingText(props) {
       setErrorCount(errorCount + 1);
     }
 
+    if (gameStatus === "new") {
+      // event.target.disabled = false;
+      document.getElementById("keyboard-input").value="";
+      // setInput('');
+      console.log("condition met");
+    }
+
     // check();
   };
+
+
+  
 
   //--------------------------------
 
@@ -94,8 +106,20 @@ export default function TypingText(props) {
       return "background-color";
     }
 
+    ////////////////////////////////
+    if (gameStatus === "new") {
+      return "background-color";
+    }
+    ////////////////////////////////
+
     return "has-background-wrong";
   }
+
+  /////////////////////////////////
+  if (gameStatus === "new") {
+    setErrorCount(0)
+  }
+  
 
   return (
     <container>
