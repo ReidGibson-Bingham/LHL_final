@@ -2,12 +2,10 @@ import { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
 
 import { gameContext } from "../providers/GameProvider";
+import Button from "react-bootstrap/Button";
 
-//import "../styles/TypingText.scss";
 import ProgressBar from "./ProgressBar";
 import ProgressBarComp from "./ProgressBarComp";
-
-import Button from "react-bootstrap/Button";
 
 export default function ChatRoom() {
   const { errorCount, percentDone, user } = useContext(gameContext);
@@ -109,9 +107,12 @@ export default function ChatRoom() {
   });
 
   return (
-    <div className="chatRoom-container">
-      <ProgressBar />
-      <ProgressBarComp compStatus={compStatus} />
+    <container className="chatroom-container">
+      <h4>Competitive Duel</h4>
+      <div className="">
+        <ProgressBar />
+        <ProgressBarComp compStatus={compStatus} />
+      </div>
       <h4>
         {/* <div>
           <span>{status.connected}</span> clients connected
@@ -132,9 +133,9 @@ export default function ChatRoom() {
       {/* <button onClick={disconnect}>disconnect</button> */}
       <div>
         {/* <input onChange={onToChange} value={to} placeholder="To" /> */}
-        <h3>
-          {user.name} VS {to}
-        </h3>
+        <h4>
+          {user.name} vs {to}
+        </h4>
       </div>
       <div>
         <textarea
@@ -143,10 +144,12 @@ export default function ChatRoom() {
         ></textarea>
       </div>
 
-      <button onClick={send}>Send</button>
+      <Button variant="outline-primary" onClick={send}>
+        Send
+      </Button>
       {/* <button onClick={sendPlayerStatus}>Send Player Status</button> */}
       {/* <button onClick={clear}>Clear</button> */}
       <ul>{list}</ul>
-    </div>
+    </container>
   );
 }

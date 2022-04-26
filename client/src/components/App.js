@@ -29,8 +29,8 @@ export default function App() {
     competitiveMode,
     setCompetitiveMode,
     setGameStatus,
-    gameStatus } =
-    useContext(gameContext);
+    gameStatus,
+  } = useContext(gameContext);
 
   return (
     <main className="layout">
@@ -51,18 +51,13 @@ export default function App() {
           </div>
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
-            
           </div>
           <div className="App col-sm-3">
             {user.name && competitiveMode && <ChatRoom />}
           </div>
-          
         </div>
-        
       </section>
-      <div className="GameStatus">
-        {gameStatus === "done" && <AutoSave/> }
-      </div>
+      <div className="GameStatus">{gameStatus === "done" && <AutoSave />}</div>
     </main>
   );
 }

@@ -1,3 +1,6 @@
+h4 {
+  color: blue;
+}
 .App {
   text-align: left;
 }
@@ -42,7 +45,7 @@
 }
 
 .simple-keyboard {
-  max-width: 850px;
+  max-width: 600px;
 }
 
 .has-background-success {
@@ -57,19 +60,24 @@
   background-color: rgb(251, 251, 174);
 }
 
-.gameStatus {
-  font-size: x-large;
+.game-status {
+  font-size: large;
+  color: blue;
 }
 
 .typing-area {
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
-
+.text-to-type {
+  border: 2 px solid;
+  border-radius: 12 px;
+  border-color: blue;
+}
 .form-container {
   align-self: center;
   max-width: 400px;
@@ -100,6 +108,13 @@
   min-width: 200px;
 }
 
-.test {
-  max-width: 100px;
+.typing-text-container {
+  max-width: 600px;
 }
+.chatroom-container {
+  width: 100%;
+  padding: 5px;
+}
+// .test {
+//   max-width: 100px;
+// }

@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { useEffect, useState, useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
+import Button from "react-bootstrap/Button";
 
 const TopNavLogin = () => {
   const [email, setEmail] = useState("");
@@ -63,7 +64,7 @@ const TopNavLogin = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Competitive Typing
+          <h3>Typing Duel</h3>
         </a>
         <button
           className="navbar-toggler"
@@ -78,13 +79,8 @@ const TopNavLogin = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <div className="col-sm-6">
+          <div className="col-sm-4">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
               <li className="nav-item">
                 <a className="nav-link" href="/">
                   Admin
@@ -92,7 +88,7 @@ const TopNavLogin = () => {
               </li>
             </ul>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-8">
             <form>
               <ul className="nav navbar-nav navbar-right">
                 <li className="nav-item">
@@ -115,13 +111,14 @@ const TopNavLogin = () => {
                 </li>
                 <li className="nav-item">
                   &nbsp;
-                  <button
+                  <Button
+                    variant="outline-primary"
                     onClick={handleSubmit}
                     className="dropdown-content test"
                     type="submit"
                   >
                     Submit
-                  </button>
+                  </Button>
                 </li>
                 <li className="nav-item alert-danger">{loginErrMsg}</li>
               </ul>

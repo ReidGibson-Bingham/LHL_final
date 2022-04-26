@@ -27,9 +27,7 @@ export default function GameStats() {
 
     return (
       <div className="game-stats" key={game[0]}>
-        Error Count: {game.slice(2, 3)}
-        <br></br>
-        <h4 key={Math.random()}>Game #: {game.slice(0, 1)} </h4>
+        <div key={Math.random()}>Game #: {game.slice(0, 1)} </div>
         <div key={game[0]}>
           Error Count: {game.slice(2, 3)}
           <br></br>
@@ -47,11 +45,8 @@ export default function GameStats() {
 
   return (
     <container className="justify-content-start stats-list">
-      <div>
-        <button onClick={getGamesData}> get stats </button>
-      </div>
       <div className="game-stats">
-        <h4>Stats: </h4>
+        <h4>Game Stats </h4>
         {gameItems[gameItems.length - 2]}
         ----
         {gameItems[gameItems.length - 1]}

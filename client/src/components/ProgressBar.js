@@ -1,16 +1,15 @@
 import { useEffect, useState, useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
 
-
 export default function ProgressBar() {
   const { percentDone } = useContext(gameContext);
   let percDone = Math.floor(percentDone);
   const containerStyles = {
     height: 20,
-    width: 400,
+    width: "95%",
     backgroundColor: "#e0e0de",
     borderRadius: 50,
-    margin: 50,
+    margin: 5,
   };
 
   const fillerStyles = {

@@ -1,9 +1,5 @@
 import React from "react";
-//<li className="nav-item">
-//<a className="nav-link disabled" href="/">
-//  Disabled
-//</a>
-//</li>
+
 import { useState, useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
 
@@ -31,7 +27,7 @@ const TopNavLogout = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Competitive Typing
+          <h3>Typing Duel</h3>
         </a>
         <button
           className="navbar-toggler"
@@ -48,11 +44,6 @@ const TopNavLogout = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="col-sm-8">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
               <li className="nav-item">
                 <a className="nav-link" href="/">
                   Admin

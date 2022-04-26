@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-//import "../styles/Signup.scss";
 import { gameContext } from "../providers/GameProvider";
+import Button from "react-bootstrap/Button";
 
 export default function Signup() {
   // States for registration
@@ -145,18 +145,17 @@ export default function Signup() {
         <div className="row">&nbsp;</div>
         <div className="row text-center">
           <div className="align-items-center">
-            <button
+            <Button
+              variant="outline-primary"
               onClick={handleSubmit}
               className="dropdown-content test"
               type="submit"
             >
               Submit
-            </button>
+            </Button>
           </div>
         </div>
       </form>
     </div>
   );
-  //}
-  //return <div className="form-container"></div>;
 }

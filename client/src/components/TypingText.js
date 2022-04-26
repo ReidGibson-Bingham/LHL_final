@@ -4,8 +4,6 @@ import React, { useRef, useState, useContext, useEffect } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
-//import "./styles.css";
-//import "../styles/TypingText.scss";
 import "../styles/App.scss";
 
 import { gameContext } from "../providers/GameProvider";
@@ -61,7 +59,6 @@ export default function TypingText(props) {
       // event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
-      
     } else if (index >= typingText.length) {
       // event.target.disabled = true;
     }
@@ -80,16 +77,13 @@ export default function TypingText(props) {
 
     if (gameStatus === "new") {
       // event.target.disabled = false;
-      document.getElementById("keyboard-input").value="";
+      document.getElementById("keyboard-input").value = "";
       // setInput('');
       console.log("condition met");
     }
 
     // check();
   };
-
-
-  
 
   //--------------------------------
 
@@ -117,13 +111,12 @@ export default function TypingText(props) {
 
   /////////////////////////////////
   if (gameStatus === "new") {
-    setErrorCount(0)
+    setErrorCount(0);
   }
-  
 
   return (
-    <container>
-      <div className="GameStatus">
+    <container className="typing-text-container">
+      <div className="game-status">
         {gameStatus === "started"
           ? "Game In Progress..."
           : gameStatus === "done"
@@ -132,7 +125,7 @@ export default function TypingText(props) {
           ? "Game Ready!"
           : "Select game difficulty."}
       </div>
-      <div id="text-showed">
+      <div className="text-to-type" id="text-showed">
         {typingText.map((letter, i) => (
           <span key={i} className={check(letter, i)}>
             {letter}
