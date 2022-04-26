@@ -27,8 +27,7 @@ const TopNavLogout = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          <i class="fa-solid fa-keyboard"></i>
-          
+          <i className="fa-solid fa-keyboard"></i>
         </a>
         <a className="navbar-brand" href="/">
           <h3>Typing Duel</h3>

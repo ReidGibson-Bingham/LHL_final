@@ -83,7 +83,7 @@ export default function GameProvider(props) {
       .get("http://localhost:3000/games")
       .then((response) => {
         setGamesData(response.data);
-        console.log("response.data:", response.data);
+        console.log("response.data:", response);
       })
       .catch(() => {
         alert("Error retreiving data");

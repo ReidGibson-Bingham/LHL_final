@@ -13,6 +13,7 @@ export default function GameStats() {
     setGameData,
     gamesData,
     setGamesData,
+    user,
   } = useContext(gameContext);
 
   useEffect(() => {
@@ -22,7 +23,11 @@ export default function GameStats() {
   // console.log("00 games data:", gamesData[0]);
 
   // only display current users
-  const gameItems = gamesData.map((game) => {
+  const userGameItems = gamesData.filter((item) => item.user_id == user.id);
+
+  console.log("userGameItems", userGameItems, user.id);
+
+  const gameItems = userGameItems.map((game) => {
     game = Object.values(game);
 
     return (
@@ -47,8 +52,8 @@ export default function GameStats() {
     <container className="justify-content-start stats-list component-border">
       <div className="game-stats">
         <h4>Game Stats </h4>
+        {gameItems[gameItems.length - 3]}
         {gameItems[gameItems.length - 2]}
-
         {gameItems[gameItems.length - 1]}
       </div>
     </container>

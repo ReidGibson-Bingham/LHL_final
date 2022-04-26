@@ -93,18 +93,14 @@ export default function TypingText(props) {
 
   function check(letter, index) {
     const textTyped = input[index];
-
+    if (gameStatus === "new") {
+      return "background-color";
+    }
     if (letter === textTyped) {
       return "has-background-success";
     } else if (!textTyped) {
       return "background-color";
     }
-
-    ////////////////////////////////
-    if (gameStatus === "new") {
-      return "background-color";
-    }
-    ////////////////////////////////
 
     return "has-background-wrong";
   }
