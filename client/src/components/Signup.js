@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import "../styles/Signup.scss";
+//import "../styles/Signup.scss";
 import { gameContext } from "../providers/GameProvider";
 
 export default function Signup() {

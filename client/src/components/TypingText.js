@@ -5,7 +5,8 @@ import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
 //import "./styles.css";
-import "../styles/TypingText.scss";
+//import "../styles/TypingText.scss";
+import "../styles/App.scss";
 
 import { gameContext } from "../providers/GameProvider";
 
@@ -97,7 +98,7 @@ export default function TypingText(props) {
   }
 
   return (
-    <div>
+    <container>
       <div className="GameStatus">
         {gameStatus === "started"
           ? "Game In Progress..."
@@ -119,6 +120,7 @@ export default function TypingText(props) {
 
       <label className="label"></label>
       <textarea
+        className="typing-area"
         id="keyboard-input"
         value={input}
         placeholder={"Start typing to begin game"}
@@ -130,6 +132,6 @@ export default function TypingText(props) {
         onChange={onChange}
         onKeyPress={onKeyPress}
       />
-    </div>
+    </container>
   );
 }

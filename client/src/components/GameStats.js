@@ -1,9 +1,6 @@
 import React, { Fragment, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
-//import "./styles.css";
-//import "../styles/GameStats.scss";
-
 import { gameContext } from "../providers/GameProvider";
 
 export default function GameStats() {
@@ -25,7 +22,7 @@ export default function GameStats() {
     game = Object.values(game);
 
     return (
-      <div key={game[0]}>
+      <div className="game-stats" key={game[0]}>
         Error Count: {game.slice(2, 3)}
         <br></br>
         Time (seconds): {game.slice(3, 4) / 1000}
@@ -40,17 +37,17 @@ export default function GameStats() {
   });
 
   return (
-    <section>
+    <container className="justify-content-start stats-list">
       <div>
         <button onClick={getGamesData}> get stats </button>
       </div>
-      <div className="">
+      <div className="game-stats">
         <h4>Stats: </h4>
         {gameItems[gameItems.length - 2]}
         ----
         {gameItems[gameItems.length - 1]}
         ----
       </div>
-    </section>
+    </container>
   );
 }

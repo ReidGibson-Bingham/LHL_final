@@ -37,7 +37,9 @@ export default function App() {
           <div className="row"></div>
         </div>
         <div className="row">
-          <div className="App col-sm-3">{user.name && <GameStats />}</div>
+          <div className="App col-sm-3 justify-content-start">
+            {user.name && <GameStats />}
+          </div>
           <div className="App col-sm-6">
             {!user.name && <Signup />} {user.name && <TypingText />}
           </div>

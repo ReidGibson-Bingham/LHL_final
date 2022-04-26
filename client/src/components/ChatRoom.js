@@ -3,7 +3,7 @@ import io from "socket.io-client";
 
 import { gameContext } from "../providers/GameProvider";
 
-import "../styles/TypingText.scss";
+//import "../styles/TypingText.scss";
 import ProgressBar from "./ProgressBar";
 import ProgressBarComp from "./ProgressBarComp";
 
