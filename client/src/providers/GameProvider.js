@@ -38,7 +38,6 @@ export default function GameProvider(props) {
   }, []);
 
   const saveGameData = function () {
-
     const gameDATA = {
       user_id: user.id,
       error_count: errorCount,
@@ -78,7 +77,6 @@ export default function GameProvider(props) {
         alert("session data could not be saved, error: ", error);
       });
   };
-  
 
   const getGamesData = function () {
     axios
@@ -111,7 +109,7 @@ export default function GameProvider(props) {
     getGamesData,
     gamesData,
     setGamesData,
-   
+
     user,
     setUser,
     percentDone,

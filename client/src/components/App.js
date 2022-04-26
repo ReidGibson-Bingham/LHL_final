@@ -1,7 +1,11 @@
 import "../styles/App.scss";
 
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
+
+import Signup from "./Signup";
+import TopNavLogin from "../navigation/TopNavLogin";
+import TopNavLogout from "../navigation/TopNavLogout";
 
 import TypingText from "./TypingText";
 
@@ -10,17 +14,13 @@ import GameMode from "./GameMode";
 import GameStats from "./GameStats";
 
 import GameScore from "./GameScore";
-import Signup from "./Signup";
-
-import TopNavLogin from "../navigation/TopNavLogin";
-import TopNavLogout from "../navigation/TopNavLogout";
 
 import ChatRoom from "./ChatRoom";
 
-import Button from "react-bootstrap/Button";
+import AutoSave from "./AutoSave";
 
 export default function App() {
-  const { user, setUser, competitiveMode, setCompetitiveMode } =
+  const { user, setUser, competitiveMode, setCompetitiveMode, gameStatus } =
     useContext(gameContext);
 
   return (
@@ -45,6 +45,7 @@ export default function App() {
             {user.name && competitiveMode && <ChatRoom />}
           </div>
         </div>
+        <div className="">{gameStatus === "done" && <AutoSave />}</div>
       </section>
     </main>
   );
