@@ -46,7 +46,7 @@ export default function TypingText(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
-
+    // event.target.disabled = false;
     setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
@@ -57,11 +57,12 @@ export default function TypingText(props) {
     const index = input.length - 1;
     if (input.length === 1) {
       setGameStatus("started");
-      event.target.disabled = false;
+      // event.target.disabled = false;
     } else if (index === typingText.length - 1) {
       setGameStatus("done");
+      
+    } else if (index >= typingText.length) {
       // event.target.disabled = true;
-      event.target.disabled = false;
     }
 
     keyboard.current.setInput(input);
@@ -77,7 +78,8 @@ export default function TypingText(props) {
     }
 
     if (gameStatus === "new") {
-      Document.getElementById("keyboard-input").value="";
+      // event.target.disabled = false;
+      document.getElementById("keyboard-input").value="";
       // setInput('');
       console.log("condition met");
     }

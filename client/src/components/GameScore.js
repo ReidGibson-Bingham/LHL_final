@@ -34,7 +34,8 @@ export default function GameScore() {
       // setGameTotalTime(time);
     }
     if (gameStatus === "new") {
-      setTime(0)
+      setTime(0);
+      setGameTotalTime(0);
     }
     console.log("GameScore time: ", time);
   }, [gameStatus]);

@@ -29,8 +29,8 @@ export default function GameMode() {
 
   const newGameStatus = function () {
     setGameStatus("new");
-    console.log("new game button clicked")
-    // () => Document.getElementById("keyboard-input").value="";
+    console.log("new game button clicked");
+    document.getElementById("keyboard-input").value = "";
   }
 
   
@@ -47,7 +47,7 @@ export default function GameMode() {
             Competitive Mode
           </Button>  
           <div>
-          <Button onClick={newGameStatus}> New Game </Button>
+          <Button variant="outline-secondary" onClick={newGameStatus}> New Game </Button>
         </div>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
+import Button from 'react-bootstrap/Button'
 
 export default function ProgressBar() {
   const { percentDone } = useContext(gameContext);
   let percDone = Math.floor(percentDone);
   const containerStyles = {
     height: 20,
-    width: 800,
+    width: 400,
     backgroundColor: "#e0e0de",
     borderRadius: 50,
     margin: 50,
