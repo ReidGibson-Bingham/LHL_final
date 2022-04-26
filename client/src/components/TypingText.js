@@ -75,15 +75,25 @@ export default function TypingText(props) {
       setErrorCount(errorCount + 1);
     }
 
+    // check();
+  };
+
+  useEffect(() => {
     if (gameStatus === "new") {
       // event.target.disabled = false;
-      document.getElementById("keyboard-input").value = "";
+      // document.getElementById("keyboard-input").value = "";
+      setInput("");
+      
+      console.log("&&input:", input);
+      console.log("input", typeof input);
+      console.log("input as an array:", input.split(''))
+      const tempInput = input.split('')
+      console.log("temp input[0]: ", tempInput[0])
       // setInput('');
       console.log("condition met");
     }
-
-    // check();
-  };
+  },[gameStatus])
+  
 
   //--------------------------------
 
@@ -94,28 +104,30 @@ export default function TypingText(props) {
   function check(letter, index) {
     const textTyped = input[index];
 
-    if (letter === textTyped) {
-      return "has-background-success";
-    } else if (!textTyped) {
-      return "background-color";
-    }
-
+    // this one needs to go first to reset all the text to yellow
     ////////////////////////////////
     if (gameStatus === "new") {
       return "background-color";
     }
     ////////////////////////////////
 
+    if (letter === textTyped) {
+      return "has-background-success";
+    } else if (!textTyped) {
+      return "background-color";
+    }
+
     return "has-background-wrong";
   }
 
+  // setting the error count to zero on new game
   /////////////////////////////////
   if (gameStatus === "new") {
     setErrorCount(0);
   }
 
   return (
-    <container className="typing-text-container component-border">
+    <container className="typing-text-container">
       <div className="game-status">
         {gameStatus === "started"
           ? "Game In Progress..."
@@ -125,7 +137,7 @@ export default function TypingText(props) {
           ? "Game Ready!"
           : "Select game difficulty."}
       </div>
-      <div className="text-to-type inner-component-border" id="text-showed">
+      <div className="text-to-type" id="text-showed">
         {typingText.map((letter, i) => (
           <span key={i} className={check(letter, i)}>
             {letter}
