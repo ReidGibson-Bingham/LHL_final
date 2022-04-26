@@ -7,6 +7,8 @@ import "../styles/TypingText.scss";
 import ProgressBar from "./ProgressBar";
 import ProgressBarComp from "./ProgressBarComp";
 
+import Button from 'react-bootstrap/Button'
+
 export default function ChatRoom() {
   const { errorCount, percentDone, user } = useContext(gameContext);
 
@@ -124,8 +126,8 @@ export default function ChatRoom() {
         {/* <input onChange={onNameChange} value={user.name} /> */}
         {/* <label>{user.name}</label> */}
       </div>
-      <button onClick={connect}>Click to Compete</button>
-      {/* <button onClick={disconnect}>disconnect</button> */}
+      <Button variant="outline-dark" onClick={connect}>connect </Button>
+      <button onClick={disconnect}>disconnect</button>
       <div>
         {/* <input onChange={onToChange} value={to} placeholder="To" /> */}
         <h3>

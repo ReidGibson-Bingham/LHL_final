@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { gameContext } from "../providers/GameProvider";
 
+
 export default function ProgressBar() {
   const { percentDone } = useContext(gameContext);
   let percDone = Math.floor(percentDone);
