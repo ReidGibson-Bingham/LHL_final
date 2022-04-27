@@ -51,9 +51,9 @@ export default function GameStats() {
         {gameItems[gameItems.length - 1]}
         {gameItems[gameItems.length - 2]}
         {gameItems[gameItems.length - 3]}
-        {gameItems[gameItems.length - 4]}
+        {/* {gameItems[gameItems.length - 4]}
         {gameItems[gameItems.length - 5]}
-        {gameItems[gameItems.length - 6]}
+        {gameItems[gameItems.length - 6]} */}
       </div>
     </container>
   );
