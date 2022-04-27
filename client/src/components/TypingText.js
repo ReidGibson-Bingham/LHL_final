@@ -57,11 +57,13 @@ export default function TypingText(props) {
     if (input.length === 1) {
       setGameStatus("started");
       event.target.disabled = false;
-    } else if (index === typingText.length - 1) {
+    } else if (index >= typingText.length - 1) {
       setGameStatus("done");
-    } else if (index >= typingText.length) {
       event.target.disabled = true;
-    }
+    } 
+    // else if (index >= typingText.length) {
+    //   event.target.disabled = true;
+    // }
 
     keyboard.current.setInput(input);
     const letter = typingText[index];

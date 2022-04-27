@@ -48,9 +48,12 @@ export default function GameStats() {
     <container className="justify-content-start stats-list component-border">
       <div className="game-stats">
         <h4>Game Stats </h4>
-        {gameItems[gameItems.length - 3]}
-        {gameItems[gameItems.length - 2]}
         {gameItems[gameItems.length - 1]}
+        {gameItems[gameItems.length - 2]}
+        {gameItems[gameItems.length - 3]}
+        {gameItems[gameItems.length - 4]}
+        {gameItems[gameItems.length - 5]}
+        {gameItems[gameItems.length - 6]}
       </div>
     </container>
   );
