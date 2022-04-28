@@ -15,21 +15,21 @@ The main important bit is that the React project has `proxy` set to `localhost:3
 
 You need **Three** terminals for this app.
 
-# Ruby Backend server command
+## Ruby Backend server command
 
 In one terminal in the root directory, run `bundle install` to install the dependencies. Run `bin/rake db:setup` to create the databases (called rails_project_development by default). Run `bin/rails s` to run the server.
 
-# Websocket server command
+## Websocket server command
 
-Use seconde terminal under websocket directory, run "npm install" to install the dependencies.
+Use seconde terminal under 'websocket server' directory, run "npm install" to install the dependencies.
 
 - npm start
 
 Use above command to start webSockets server for competitive mode.
 
-# Frontend command
+## Frontend command
 
-Use third termial under client directory, run "npm install" to install the dependncies.
+Use third termial under 'client' directory, run "npm install" to install the dependncies.
 
 - npm start
 
