@@ -107,34 +107,34 @@ Please contact me at `nima.boscarino@gmail.com` if you have any questions or req
 
 ## Screen Shots
 
-!["Typing Duel Main Page"]()
+!["Typing Duel Main Page"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-MainScreen-notStarted.png)
 
 - This is the main page...
 
-!["Login/Register"]()
+!["Login/Register"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Login-Registration.png)
+
+- Login or Register...
+
+!["Game Mode Buttons"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameModeButtons.png)
 
 - Game Mode Buttons...
 
-!["Game Mode Buttons"]()
-
-- Game Mode Buttons...
-
-!["Single Player Game"]()
+!["Single Player Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-SinglePlayer-notStarted.png)
 
 - Single player mode
 
-!["Main Typing Area"]()
+!["Main Typing Area"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-TypingText.png)
 
 - This is the main area where the action happens there is the text to type, input text and the keyboard.
 
-!["Game Stats Sidebar"]()
+!["Game Stats Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameStatsSidebar.png)
 
 - Statistics from past games.
 
-!["Two Player Competitive Game"]()
+!["Two Player Competitive Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Competitve-inProgress.png)
 
 - Competitive Mode
 
-!["Competitive Dual Sidebar"]()
+!["Competitive Dual Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-CompetitiveDuelSidebar-inProgress2.png)
 
 - The Competitive Dual Sidebar shows...
