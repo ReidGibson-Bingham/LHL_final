@@ -55,6 +55,31 @@ Use above command to start front end browser, go to `localhost:3000` in your bro
 
 - We have to put the database.yml in the gitignore if we don't want to push it to the master. so we should all agree on what role we want to share or put the file in the git ignore
 
+## Dependencies
+
+-boilerplate from https://github.com/NimaBoscarino/react-rails-boilerplate
+
+Dependencies we added:
+
+in the source gemfile:
+  -gem 'rack-cors' to allow cross-origin AJAX requests
+  -gem 'rspec-rails', '~> 3.5' for testing, we may do some of this post presentation
+  
+in client package.js:
+  -"react-simple-keyboard": "^3.4.107",
+  -"react-slide-toggle": "^0.2.5",
+  -"socket.io-client": "^4.4.1",
+  -"universal-cookie": "^4.0.0",
+  -"react-bootstrap": "^2.2.3",
+  -"axios": "^0.26.1",
+  -"sass": "sass src/styles:public/styles --watch --no-source-map",
+  -"sass": "^1.50.1"
+  
+in secondServer/express-server:
+  -"cors": "^2.8.5",
+  -"express": "^4.17.1",
+  -"socket.io": "^4.4.1"
+ 
 ## Screen Shots
 
 !["Typing Duel Main Page"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-MainScreen-notStarted.png)
