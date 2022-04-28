@@ -10,7 +10,7 @@ The main important bit is that the React project has `proxy` set to `localhost:3
 
 
 
-## Set up and running for the app
+# Set up and running for the app
 
 
 You need **Three** terminals for this app.
@@ -27,7 +27,7 @@ Use seconde terminal under websocket directory, run "npm install" to install the
 
 Use above command to start webSockets server for competitive mode.
 
-# frontend command
+# Frontend command
 
 Use third termial under client directory, run "npm install" to install the dependncies.
 
@@ -38,7 +38,7 @@ Use above command to start front end browser, go to `localhost:3000` in your bro
 
 
 
-### commands for granting privileges to psql roles
+## commands for granting privileges to psql roles
 
 - GRANT ALL PRIVILEGES ON DATABASE lhl_final_development TO labber;
 
