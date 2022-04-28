@@ -2,9 +2,9 @@
 
 Welcome to typing Duel app, this is a final project for lighthouse labs. 
 
-It’s an Single Page app that allows you to practice typing and optionally compete while you do it.
+It’s an Single Page app that allows you to practice typing and optionally compete with other users.
 
-For technologies - our frontend is written in React.  The backend is Rails with a Postgres  database.  We also utilize websockets for the game competition functionality that we will show later.
+For technologies - our frontend is written in React.  The backend is Rails with a Postgres  database.  We also utilize websockets for the game competition functionality.
 
 
 
