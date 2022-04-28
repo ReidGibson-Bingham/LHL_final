@@ -6,6 +6,31 @@ It’s an Single Page app that allows you to practice typing and optionally comp
 
 For technologies - our frontend is written in React.  The backend is Rails with a Postgres  database.  We also utilize websockets for the game competition functionality.
 
+## Screen Shots
+
+- This is the main page showing the main single page design.
+!["Typing Duel Main Page"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-MainScreen-notStarted.png)
+
+- Login or Register...
+!["Login/Register"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Login-Registration.png)
+
+- Game Mode Buttons.
+!["Game Mode Buttons"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameModeButtons.png)
+
+- UI for Single player mode.
+!["Single Player Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-SinglePlayer-notStarted.png)
+
+- This is the main area where the action happens there is the text to type, input text and the keyboard.
+!["Main Typing Area"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-TypingText.png)
+
+- Here are the Statistics from past games.
+!["Game Stats Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameStatsSidebar.png)
+
+- Here's the Competitive Mode UI.
+!["Two Player Competitive Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Competitve-inProgress.png)
+
+- The Competitive Dual Sidebar shows the progress bars and chat area.
+!["Competitive Dual Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-CompetitiveDuelSidebar-inProgress2.png)
 
 
 ## React + Rails No-Fluff Boilerplate
@@ -80,36 +105,5 @@ in secondServer/express-server:
   -"express": "^4.17.1",
   -"socket.io": "^4.4.1"
  
-## Screen Shots
 
-!["Typing Duel Main Page"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-MainScreen-notStarted.png)
 
-- This is the main page...
-
-!["Login/Register"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Login-Registration.png)
-
-- Login or Register...
-
-!["Game Mode Buttons"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameModeButtons.png)
-
-- Game Mode Buttons...
-
-!["Single Player Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-SinglePlayer-notStarted.png)
-
-- Single player mode
-
-!["Main Typing Area"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-TypingText.png)
-
-- This is the main area where the action happens there is the text to type, input text and the keyboard.
-
-!["Game Stats Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-GameStatsSidebar.png)
-
-- Statistics from past games.
-
-!["Two Player Competitive Game"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-Competitve-inProgress.png)
-
-- Competitive Mode
-
-!["Competitive Dual Sidebar"](https://github.com/ReidGibson-Bingham/LHL_final/blob/master/docs/TD-ScreenShot-CompetitiveDuelSidebar-inProgress2.png)
-
-- The Competitive Dual Sidebar shows...
