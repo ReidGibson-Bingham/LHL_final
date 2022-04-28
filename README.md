@@ -1,5 +1,14 @@
+# Typing Duel
 
-# React + Rails No-Fluff Boilerplate
+Welcome to typing Duel app, this is a final project for lighthouse labs. 
+
+It’s an Single Page app that allows you to practice typing and optionally compete while you do it.
+
+For technologies - our frontend is written in React.  The backend is Rails with a Postgres  database.  We also utilize websockets for the game competition functionality that we will show later.
+
+
+
+## React + Rails No-Fluff Boilerplate
 This boillerplate is created and provided by Lighthouse Labs.
 
 A boilerplate project for anyone interested in making a project that uses React and Rails.
@@ -10,7 +19,7 @@ The main important bit is that the React project has `proxy` set to `localhost:3
 
 
 
-# Set up and running for the app
+## Set up and running for the app
 
 
 You need **Three** terminals for this app.
