@@ -21,8 +21,6 @@ Here are some projects that have been built using this boilerplate.
 - [StartDuck](https://github.com/JerChuang/StartDuck)
 - [Change-App](https://github.com/ZHShang/Change-App)
 
-
-
 ## Using the boilerplate
 
 First, fork this boilerplate so you get your own copy of it. Once you have done that, you can clone your new repo to your machine, and get started.
@@ -32,10 +30,15 @@ You need **TWO** terminals for this.
 In one terminal, run `bundle` to install the dependencies. Run `bin/rake db:setup` to create the databases (called rails_project_development by default). Run `bin/rails s` to run the server.
 
 # Ruby Backend server command
+
 - bin/rails s -b 0.0.0.0
-# Websocket server command 
+
+# Websocket server command
+
 - npm run local
-# frontend command 
+
+# frontend command
+
 - npm start
 
 In the other terminal, `cd` into `client`. Run `npm install`. Rename the `.env.example` file to be called `.env`. Then run `npm start` and go to `localhost:3000` in your browser.
@@ -101,3 +104,37 @@ Please contact me at `nima.boscarino@gmail.com` if you have any questions or req
 - ALTER USER labber WITH SUPERUSER
 
 - We have to put the database.yml in the gitignore if we don't want to push it to the master. so we should all agree on what role we want to share or put the file in the git ignore
+
+## Screen Shots
+
+!["Typing Duel Main Page"]()
+
+- This is the main page...
+
+!["Login/Register"]()
+
+- Game Mode Buttons...
+
+!["Game Mode Buttons"]()
+
+- Game Mode Buttons...
+
+!["Single Player Game"]()
+
+- Single player mode
+
+!["Main Typing Area"]()
+
+- This is the main area where the action happens there is the text to type, input text and the keyboard.
+
+!["Game Stats Sidebar"]()
+
+- Statistics from past games.
+
+!["Two Player Competitive Game"]()
+
+- Competitive Mode
+
+!["Competitive Dual Sidebar"]()
+
+- The Competitive Dual Sidebar shows...
