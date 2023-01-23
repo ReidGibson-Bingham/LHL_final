@@ -1,56 +1,60 @@
-import React, {Fragment, useState, useContext} from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
 import axios from "axios";
-
-//import "./styles.css";
-import "../styles/GameStats.scss";
-
 
 import { gameContext } from "../providers/GameProvider";
 
 export default function GameStats() {
-
   const {
     textDifficulty,
-    saveGameData,
     getGamesData,
+    gameStatus,
+    setGameStatus,
     gameData,
     setGameData,
-    sessionsData,
-    setSessionData
+    gamesData,
+    setGamesData,
+    user,
   } = useContext(gameContext);
 
+  useEffect(() => {
+    getGamesData();
+  }, [gameStatus]);
 
-  const sessionItems = sessionsData.map( (session) => {
-    session = Object.values(session);
-    
+  // only display current users
+  const userGameItems = gamesData.filter((item) => item.user_id == user.id);
+
+  const gameItems = userGameItems.map((game) => {
+    game = Object.values(game);
+
     return (
-      <div key={session[0]}>
-        
-        <br></br>
-        Game ID: {session.slice(2, 3)}
-        <br></br>
-        User ID: {session.slice(1, 2)}
-        <br></br> 
-        Error Count: {session.slice(3, 4)} 
-        <br></br> 
-        Time (seconds): {parseFloat(String(session.slice(4, 5))) * 0.001}
-        <br></br>
-        Created on: {String(session.slice(5, 6)).substring(0, 10) + ' at: ' + String(session.slice(5, 6)).substring(11, 20)}
-        <br></br>
-
+      <div className="game-stats inner-component-border" key={game[0]}>
+        <div key={Math.random()}>Game #: {game.slice(0, 1)} </div>
+        <div key={game[0]}>
+          Error Count: {game.slice(2, 3)}
+          <br></br>
+          Time (seconds): {game.slice(3, 4) / 1000}
+          <br></br>
+          Created on:{" "}
+          {String(game.slice(5, 6)).substring(0, 10) +
+            " at: " +
+            String(game.slice(5, 6)).substring(11, 20)}
+          <br></br>
+        </div>
       </div>
-    )
-
-  })
+    );
+  });
 
   return (
-    <Fragment>
-      <button className='stats-button' onClick={saveGameData}> Save Game </button>
-      <button className='stats-button' onClick={getGamesData}> get stats </button>
-      <ul className="stats-list">
-        {sessionItems}
-      </ul>
-    </Fragment>
+    <container className="justify-content-start stats-list component-border">
+      <div className="game-stats">
+        <h4>Game Stats </h4>
+        {gameItems[gameItems.length - 1]}
+        {gameItems[gameItems.length - 2]}
+        {gameItems[gameItems.length - 3]}
+        {/* {gameItems[gameItems.length - 4]}
+        {gameItems[gameItems.length - 5]}
+        {gameItems[gameItems.length - 6]} */}
+      </div>
+    </container>
   );
-  
 }

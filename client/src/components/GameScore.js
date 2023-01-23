@@ -5,7 +5,6 @@ import { gameContext } from "../providers/GameProvider";
 
 export default function GameScore() {
   const [time, setTime] = useState(0);
-  // const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
 
   const {
@@ -24,18 +23,19 @@ export default function GameScore() {
   } = useContext(gameContext);
 
   useEffect(() => {
-    console.log("GameScore gameStatus: ", gameStatus);
     if (gameStatus === "started") {
       setRunning(true);
+      console.log("** time:", time);
     }
     if (gameStatus === "done") {
       setRunning(false);
-      setGameTotalTime(time);
+      // setGameTotalTime(time);
     }
     if (gameStatus === "new") {
       setTime(0);
+      setGameTotalTime(0);
+      setRunning(false);
     }
-    console.log("GameScore time: ", time);
   }, [gameStatus]);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ export default function GameScore() {
     if (running) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
+        setGameTotalTime((prevTime) => prevTime + 10);
       }, 10);
     } else if (!running) {
       clearInterval(interval);
@@ -50,10 +51,10 @@ export default function GameScore() {
     return () => clearInterval(interval);
   }, [running]);
 
-  //<span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
   return (
-    <div className="stopwatch row">
+    <div className="stopwatch row justify-content-around component-border">
       <div className="numbers col-sm-2">
+        Time:&nbsp;
         <span className="game_score-min">
           {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
         </span>
@@ -64,12 +65,6 @@ export default function GameScore() {
       <div className="errorCountStat col-sm-4">
         <span>Error Count: {errorCount}</span>
       </div>
-
-      {/* <div className="buttons">
-        <button onClick={() => setRunning(true)}>Start</button>
-        <button onClick={() => setRunning(false)}>Stop</button>
-        <button onClick={() => setTime(0)}>Reset</button>
-      </div> */}
     </div>
   );
 }

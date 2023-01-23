@@ -1,11 +1,36 @@
 import React from "react";
 
-const TopNavbar = () => {
+import { useState, useContext } from "react";
+import { gameContext } from "../providers/GameProvider";
+
+const TopNavLogout = () => {
+  const {
+    errorCount,
+    setErrorCount,
+    gameStatus,
+    setGameStatus,
+    textId,
+    setTextId,
+    typingText,
+    fetchData,
+    textDifficulty,
+    setTextDifficulty,
+    user,
+    setUser,
+  } = useContext(gameContext);
+
+  const logUserOut = function (e) {
+    e.stopPropagation();
+    setUser({ name: "" });
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Competitive Typing
+          <i className="fa-solid fa-keyboard"></i>
+        </a>
+        <a className="navbar-brand" href="/">
+          <h3>Typing Duel</h3>
         </a>
         <button
           className="navbar-toggler"
@@ -23,24 +48,8 @@ const TopNavbar = () => {
           <div className="col-sm-8">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Progress
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="/">
                   Admin
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link disabled" href="/">
-                  Disabled
                 </a>
               </li>
             </ul>
@@ -49,26 +58,12 @@ const TopNavbar = () => {
             <ul className="nav navbar-nav navbar-right">
               <li className="nav-label">
                 {" "}
-                <a className="nav-link" href="/">
-                  LoggedInName:
-                </a>
+                <a className="nav-link">User: {user.name}</a>
               </li>
               <li className="nav-item">
                 {" "}
-                <a className="nav-link" href="/">
+                <a className="nav-link" onClick={(event) => logUserOut(event)}>
                   Logout
-                </a>
-              </li>
-              <li className="nav-item">
-                {" "}
-                <a className="nav-link" href="/">
-                  Login
-                </a>
-              </li>
-              <li className="nav-item">
-                {" "}
-                <a className="nav-link" href="/">
-                  Signup
                 </a>
               </li>
             </ul>
@@ -82,4 +77,4 @@ const TopNavbar = () => {
     </nav>
   );
 };
-export default TopNavbar;
+export default TopNavLogout;

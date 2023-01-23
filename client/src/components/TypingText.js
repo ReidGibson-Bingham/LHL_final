@@ -4,8 +4,7 @@ import React, { useRef, useState, useContext, useEffect } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
-//import "./styles.css";
-import "../styles/TypingText.scss";
+import "../styles/App.scss";
 
 import { gameContext } from "../providers/GameProvider";
 
@@ -15,12 +14,9 @@ export default function TypingText(props) {
     setErrorCount,
     gameStatus,
     setGameStatus,
-    textId,
-    setTextId,
     typingText,
-    fetchData,
-    textDifficulty,
-    setTextDifficulty,
+    percentDone,
+    setPercentDone,
   } = useContext(gameContext);
 
   //const [text, setText] = useState("loading text".split(""));
@@ -28,6 +24,7 @@ export default function TypingText(props) {
   //------------------------------------
   const [input, setInput] = useState("");
   const [layout, setLayout] = useState("default");
+
   const keyboard = useRef();
 
   const onChange = (input) => {
@@ -40,7 +37,6 @@ export default function TypingText(props) {
   };
 
   const onKeyPress = (button) => {
-
     /**
      * If you want to handle the shift and caps lock buttons
      */
@@ -49,36 +45,44 @@ export default function TypingText(props) {
 
   const onChangeInput = (event) => {
     const input = event.target.value;
-    
+    // event.target.disabled = false;
     setInput(input); // purely for display purposes
     keyboard.current.setOptions({
       physicalKeyboardHighlight: true,
       syncInstanceInputs: true,
     });
-    
+
     // error handling //
     const index = input.length - 1;
     if (input.length === 1) {
       setGameStatus("started");
       event.target.disabled = false;
-    } else if (index === typingText.length - 1) {
+    } else if (index >= typingText.length - 1) {
       setGameStatus("done");
       event.target.disabled = true;
-    
-    }
+    } 
+    // else if (index >= typingText.length) {
+    //   event.target.disabled = true;
+    // }
 
     keyboard.current.setInput(input);
     const letter = typingText[index];
 
     let textTyped = input[index];
-    
-    
+    setPercentDone((input.length / typingText.length) * 100);
+    // console.log("percent done", percentDone);
+
     if (letter === textTyped) {
-    
     } else {
       setErrorCount(errorCount + 1);
-      
     }
+
+    // if (gameStatus === "new") {
+    //   // event.target.disabled = false;
+    //   document.getElementById("keyboard-input").value = "";
+    //   // setInput('');
+    //   console.log("condition met");
+    // }
 
     // check();
   };
@@ -91,23 +95,30 @@ export default function TypingText(props) {
 
   function check(letter, index) {
     const textTyped = input[index];
-    
-    if (letter === textTyped) {
-    
-      return "has-background-success";
-    } else if (!textTyped) {
-    
+    if (gameStatus === "new") {
       return "background-color";
     }
-    
-    return "has-background-wrong";
+    if (letter === textTyped) {
+      return "has-background-success";
+    } else if (!textTyped) {
+      return "background-color";
+    }
 
-    
+    return "has-background-wrong";
   }
 
+  /////////////////////////////////
+  useEffect(() => {
+    if (gameStatus === "new") {
+      setErrorCount(0);
+      document.getElementById("keyboard-input").disabled = false;
+      setInput("");
+    }
+  }, [gameStatus]);
+
   return (
-    <div className="TextShow">
-      <div className="GameStatus">
+    <container className="typing-text-container component-border">
+      <div className="game-status">
         {gameStatus === "started"
           ? "Game In Progress..."
           : gameStatus === "done"
@@ -116,7 +127,7 @@ export default function TypingText(props) {
           ? "Game Ready!"
           : "Select game difficulty."}
       </div>
-      <div id="text-showed">
+      <div className="text-to-type inner-component-border" id="text-showed">
         {typingText.map((letter, i) => (
           <span key={i} className={check(letter, i)}>
             {letter}
@@ -128,6 +139,7 @@ export default function TypingText(props) {
 
       <label className="label"></label>
       <textarea
+        className="typing-area"
         id="keyboard-input"
         value={input}
         placeholder={"Start typing to begin game"}
@@ -139,6 +151,6 @@ export default function TypingText(props) {
         onChange={onChange}
         onKeyPress={onKeyPress}
       />
-    </div>
+    </container>
   );
 }

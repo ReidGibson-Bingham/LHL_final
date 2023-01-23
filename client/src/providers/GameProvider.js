@@ -15,18 +15,17 @@ export default function GameProvider(props) {
   const [gameTotalTime, setGameTotalTime] = useState(0);
   const setErrCount = (errorCount) => setErrorCount(errorCount);
   const [gameData, setGameData] = useState({});
-  const [sessionData, setSessionData] = useState([]);
-  const [sessionsData, setSessionsData] = useState([]);
-
-
-
+  const [gamesData, setGamesData] = useState([]);
+  // const [sessionData, setSessionData] = useState([]);
+  // const [sessionsData, setSessionsData] = useState([]);
+  const [user, setUser] = useState({});
+  const [percentDone, setPercentDone] = useState(0);
+  const [competitiveMode, setCompetitiveMode] = useState(false);
 
   const fetchData = (textDifficulty) => {
-   
     axios
       .get("http://localhost:3000/texts") // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
-        
         setTypingText(response.data[textDifficulty].content.trim().split(""));
         //return response.data[randNum].content.split("");
       });
@@ -39,60 +38,57 @@ export default function GameProvider(props) {
   }, []);
 
   const saveGameData = function () {
-
     const gameDATA = {
-      is_single_player: null,
-      player1_id: 1,
-      player2_id: 0,
-      game_datetime: null,
+      user_id: user.id,
+      error_count: errorCount,
+      total_time: gameTotalTime,
       text_id: textDifficulty,
-      created_at: null, 
-      updated_at: null
-    }
+      created_at: null,
+      updated_at: null,
+    };
 
-    setGameData(gameDATA)
+    setGameData(gameDATA);
 
-    axios.post('http://localhost:3000/games', gameDATA)
+    axios
+      .post("http://localhost:3000/games", gameDATA)
       .then((response) => {
+        console.log("&& game data:", gameDATA);
 
-        console.log("game data successfully saved, response: ", response)
+        console.log("game data successfully saved, response: ", response);
 
-        const sessionDATA = {
-          user_id: 1,
-          game_id: response.data.id,
-          error_count: errorCount,
-          timer: gameTotalTime,
-          created_at: null,
-          updated_at: null
-        }
+        // console.log("**session data:", sessionDATA);
 
-        setSessionData(sessionDATA)
+        // const sessionDATA = {
+        //   user_id: 1,
+        //   game_id: response.data.id,
+        //   error_count: errorCount,
+        //   timer: gameTotalTime,
+        //   created_at: null,
+        //   updated_at: null,
+        // };
 
-        return axios.post('http://localhost:3000/sessions', sessionDATA)
+        // console.log("response.data.id: ", response.data.id);
+        // console.log("++session Data: ", sessionDATA);
+        // setSessionData(sessionDATA);
 
-      })
-      .then((response) => {
-        console.log("session data successfully saved, response: ", response)
+        // return axios.post("http://localhost:3000/sessions", sessionDATA);
       })
       .catch((error) => {
-        alert("session data could not be saved, error: ", error)
-      })
+        alert("session data could not be saved, error: ", error);
+      });
+  };
 
-  }
-
-  const getGamesData = function() {
-
-    axios.get('http://localhost:3000/sessions')
+  const getGamesData = function () {
+    axios
+      .get("http://localhost:3000/games")
       .then((response) => {
-        setSessionsData(response.data)
-        console.log("response.data:", response.data)
-        
+        setGamesData(response.data);
+        console.log("response.data:", response);
       })
       .catch(() => {
-        alert("Error retreiving data")
-      })
-
-  }
+        alert("Error retreiving data");
+      });
+  };
 
   // This list can get long with a lot of functions.  Reducer may be a better choice
   const providerData = {
@@ -109,12 +105,17 @@ export default function GameProvider(props) {
     gameTotalTime,
     setGameTotalTime,
     gameData,
-    saveGameData, 
+    saveGameData,
     getGamesData,
-    setSessionData,
-    sessionData,
-    setSessionsData,
-    sessionsData
+    gamesData,
+    setGamesData,
+
+    user,
+    setUser,
+    percentDone,
+    setPercentDone,
+    competitiveMode,
+    setCompetitiveMode,
   };
 
   // We can now use this as a component to wrap anything
